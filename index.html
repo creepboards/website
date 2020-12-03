@@ -54,6 +54,12 @@
             padding: 0;
         }
 
+        @media (max-aspect-ratio: 4/5) {
+            .card-display {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
         .card{
             width:min(15vw, 15vh);
             height:min(13vw, 13vh);
