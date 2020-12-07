@@ -40,6 +40,7 @@
             <a href="#import-files-panel" class="mdl-tabs__tab is-active">Import files</a>
             <a href="#layout-panel" class="mdl-tabs__tab">Layout</a>
             <a href="#macros-panel" class="mdl-tabs__tab">Macros</a>
+            <a href="#settings-panel" class="mdl-tabs__tab">Settings</a>
             <a href="#price-estimator-panel" class="mdl-tabs__tab">Price Estimator</a>
         </div>
       
@@ -52,7 +53,7 @@
                 </label>
             </div>
             <div>
-                Export KLE JSON file:
+                Export Creepboard JSON file:
             </div>
             
 
@@ -119,6 +120,25 @@
         </div>
         <div class="mdl-tabs__panel" id="macros-panel">
 
+        </div>
+        <div class="mdl-tabs__panel" id="settings-panel">
+            <div>check for updates</div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="bluetoothDeviceName">
+                <label class="mdl-textfield__label" for="bluetoothDeviceName">Bluetooth Device Name</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="wifiDeviceName">
+                <label class="mdl-textfield__label" for="wifiDeviceName">WiFi Device Name</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" id="wifiPassword">
+                <label class="mdl-textfield__label" for="wifiPassword">WiFi password</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="wifiSsid">
+                <label class="mdl-textfield__label" for="wifiSsid">WiFi SSID</label>
+            </div>
         </div>
         <div class="mdl-tabs__panel" id="price-estimator-panel">
             <table class="mdl-data-table mdl-js-data-table">
@@ -194,10 +214,7 @@
                 keyContainer.classList = "key-container";
                 
                 var u = 50;
-                // var x = u*(k.x+k.rx)
-                // var y = u*(k.y+k.ry)
-                // var r = k.r
-                // console.log(k.name, x, y, r);
+
                 keyContainer.style = `
                     left:${u*k.rx};
                     top:${u*k.ry};
@@ -213,23 +230,6 @@
 
                 keyContainer.appendChild(key);
                 rb.appendChild(keyContainer);
-                // var u = 50;
-                // var c = canvas.getContext("2d");
-                // c.fillStyle = "#000000";
-                // c.strokeStyle = "#000000";
-                // c.font = "10px Arial";
-
-                // c.translate(u, u)
-                // c.translate(u*k.rx, u*k.ry);
-                // c.rotate(k.r * Math.PI/180);
-
-                // c.fillText(k.name, u*(k.x+k.w/2), u*(k.y+k.h/2));
-                // console.log(k.name)
-                // c.strokeRect(u*k.x, u*k.y, u*(k.w), u*(k.h));
-                
-                // c.rotate(-k.r * Math.PI/180);
-                // c.translate(-u*k.rx, -u*k.ry);
-                // c.translate(-u, -u)
             }
         }
 
