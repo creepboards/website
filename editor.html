@@ -1,0 +1,324 @@
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-red.min.css"/>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Fredoka+One&family=Piedra&family=Righteous&family=Roboto:ital,wght@0,300;1,300&display=swap');
+
+        body{
+            font-family: 'Righteous', cursive;
+        }
+
+        .key-container{
+            position:absolute;
+            display: grid;
+            grid-template-columns: 3px 1fr 3px;
+            grid-template-rows: 3px 1fr 3px;
+        }
+
+        .key{
+            grid-row: 2 / 3;
+            grid-column: 2 / 3;
+            border-radius: 5px;
+            border: 1px solid #000000;
+            height:100%;
+            width:100%;
+        }
+
+        #layout{
+            height: 50vh;
+        }
+
+        #KLE-input-file { display: none }
+    </style>
+</head>
+<body>
+    <div id="layout"></div>
+    
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+        <div class="mdl-tabs__tab-bar">
+            <a href="#import-files-panel" class="mdl-tabs__tab is-active">Import files</a>
+            <a href="#layout-panel" class="mdl-tabs__tab">Layout</a>
+            <a href="#macros-panel" class="mdl-tabs__tab">Macros</a>
+            <a href="#price-estimator-panel" class="mdl-tabs__tab">Price Estimator</a>
+        </div>
+      
+        <div class="mdl-tabs__panel is-active" id="import-files-panel">
+            <div>
+                Upload KLE JSON file:
+                <input type="file" id="KLE-input-file">
+                <label for="KLE-input-file" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    <b>Upload</b>
+                </label>
+            </div>
+            <div>
+                Export KLE JSON file:
+            </div>
+            
+
+        </div>
+        <div class="mdl-tabs__panel" id="layout-panel">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Add Key
+            </button>
+            <br>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_type1">
+                <input checked class="mdl-radio__button" id="switch_type1" name="switch_type" type="radio" value="on">
+                <span class="mdl-radio__label">MX style switch</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_type2">
+                <input class="mdl-radio__button" id="switch_type2" name="switch_type" type="radio" value="off">
+                <span class="mdl-radio__label">Rotary Encoder</span>
+            </label>
+            <br>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting1">
+                <input checked class="mdl-radio__button" id="switch_lighting1" name="switch_lighting" type="radio" value="on">
+                <span class="mdl-radio__label">None</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting2">
+                <input class="mdl-radio__button" id="switch_lighting2" name="switch_lighting" type="radio" value="off">
+                <span class="mdl-radio__label">In-key LED</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting3">
+                <input class="mdl-radio__button" id="switch_lighting3" name="switch_lighting" type="radio" value="off">
+                <span class="mdl-radio__label">RGB led</span>
+            </label>
+            
+
+            <div id="selected-key">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-x">
+                    <label class="mdl-textfield__label" for="sk-x">X position</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-y">
+                    <label class="mdl-textfield__label" for="sk-y">Y position</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-r">
+                    <label class="mdl-textfield__label" for="sk-r">Rotation</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-w">
+                    <label class="mdl-textfield__label" for="sk-w">Width</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-h">
+                    <label class="mdl-textfield__label" for="sk-h">Height</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sk-t">
+                    <label class="mdl-textfield__label" for="t">Label</label>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-tabs__panel" id="macros-panel">
+
+        </div>
+        <div class="mdl-tabs__panel" id="price-estimator-panel">
+            <table class="mdl-data-table mdl-js-data-table">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Item</th>
+                        <th>Calculation</th>
+                        <th>Net Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">Engineering Fee</td>
+                        <td>$5</td>
+                        <td>$5</td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">Switches</td>
+                        <td>$0.75 * 104</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">Rotary Encoders</td>
+                        <td>4 * $5.00</td>
+                        <td>$20</td>
+                    </tr>
+                </tbody>
+            </table>
+            These prices may not reflect current parts, labor, and shipping cost. If you are interested in this particular configuration please do not hesitate to request a quote.
+            you are not inconviencing a human, quotes are mostly automated. For more information on the ordering process visit <a href="https://creepboards.com/about/orders">creepboards.com/about/orders</a>
+            <br>
+            Group buy pricing and timing estimates will also be included in your quote. If you would like more information on our group buy program visit <a href="https://creepboards.com/about/group-buys">creepboards.com/about/group-buys</a>
+            <br>
+            Please provide an email we should send the quote to: 
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="email">
+                <label class="mdl-textfield__label" for="email">Email</label>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Request a Quote
+            </button>
+        </div>
+      </div>
+
+
+    
+    <script>
+        class key{
+            constructor(){
+                this.x = 0;
+                this.y = 0;
+                this.r = 0;
+                this.rx = 0;
+                this.ry = 0;
+                this.w = 1;
+                this.h = 1;
+                this.name = "";
+            }
+            
+            loadFromKleCursor(c, name){
+                this.x = c.state.x;
+                this.y = c.state.y;
+                this.r = c.state.r;
+                this.rx = c.state.rx;
+                this.ry = c.state.ry;
+                this.w = c.state.w;
+                this.h = c.state.h;
+                this.name = name;
+            }
+
+            render(rb, k){
+                var u = 50;
+                var keyContainer = document.createElement("div");
+                keyContainer.classList = "key-container";
+                keyContainer.style = `left:${u*k.x};top:${u*k.y};width:${u*k.w};height:${u*k.h}`;
+
+                var key = document.createElement("div");
+                key.classList = "key"
+                key.innerText = k.name;
+
+                keyContainer.appendChild(key);
+                rb.appendChild(keyContainer);
+                // var u = 50;
+                // var c = canvas.getContext("2d");
+                // c.fillStyle = "#000000";
+                // c.strokeStyle = "#000000";
+                // c.font = "10px Arial";
+
+                // c.translate(u, u)
+                // c.translate(u*k.rx, u*k.ry);
+                // c.rotate(k.r * Math.PI/180);
+
+                // c.fillText(k.name, u*(k.x+k.w/2), u*(k.y+k.h/2));
+                // console.log(k.name)
+                // c.strokeRect(u*k.x, u*k.y, u*(k.w), u*(k.h));
+                
+                // c.rotate(-k.r * Math.PI/180);
+                // c.translate(-u*k.rx, -u*k.ry);
+                // c.translate(-u, -u)
+            }
+        }
+
+        class kleCursor{
+            constructor(){
+                this.state = {
+                    'x': 0,
+                    'y': 0,
+                    'w': 1,
+                    'h': 1
+                }
+            }
+
+            update(c, d){
+                if('rx' in d || 'ry' in d){
+                    c.state['y'] = 0
+                    c.state['x'] = 0
+                }
+                if('x' in d){
+                    d['x'] += c.state['x']
+                }
+                if('y' in d){
+                    d['y'] += c.state['y']
+                }
+                for(var key in d){
+                    c.state[key] = d[key]
+                }
+            }
+
+            newRow(c){
+                c.state['x'] = 0
+                c.state['y'] += 1
+            }
+
+            getKey(c, name = ""){
+                let k = new key();
+                k.loadFromKleCursor(c, name)
+                c.state['x'] += c.state['w']
+                c.state['w'] = 1
+                c.state['h'] = 1
+                return k
+            }
+        }
+
+        class layout{
+            constructor(){
+                this.keys = [];
+            }
+
+            load_from_KLE(data){
+                const c = new kleCursor()
+                for(const row in data){
+                    for(const el in data[row]){
+                        if (typeof data[row][el] == "string"){
+                            this.keys.push(c.getKey(c, data[row][el]))
+                        } else {
+                            c.update(c, data[row][el])
+                        }
+                    }
+                    c.newRow(c)
+                }
+            }
+
+            load_from_CREEP(data){
+
+            }
+
+            export_to_CREEP(){
+
+            }
+
+            export_to_KLE(){
+
+            }
+            
+            render(l, render_box){
+                for(var k in l.keys){
+                    l.keys[k].render(render_box, l.keys[k])
+                }
+            }
+
+        }
+        
+        let kb = new layout();
+
+        const KLEfileSelector = document.getElementById('KLE-input-file');
+        KLEfileSelector.addEventListener('change', (event) => {
+            const fileList = KLEfileSelector.files;
+            parseJsonFile(fileList[0], kb.load_from_KLE)
+        });
+
+        function parseJsonFile(file, fn){
+            fr = new FileReader()
+            fr.onload = function(){
+                kb.load_from_KLE(JSON.parse(fr.result))
+                var layout = document.getElementById("layout");
+                kb.render(kb, layout)
+            }
+            fr.readAsText(file)
+        }
+        
+
+    </script>
+</body>
