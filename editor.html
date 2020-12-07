@@ -12,8 +12,8 @@
         .key-container{
             position:absolute;
             display: grid;
-            grid-template-columns: 3px 1fr 3px;
-            grid-template-rows: 3px 1fr 3px;
+            grid-template-columns: 1px 1fr 1px;
+            grid-template-rows: 1px 1fr 1px;
         }
 
         .key{
@@ -190,10 +190,22 @@
             }
 
             render(rb, k){
-                var u = 50;
                 var keyContainer = document.createElement("div");
                 keyContainer.classList = "key-container";
-                keyContainer.style = `left:${u*k.x};top:${u*k.y};width:${u*k.w};height:${u*k.h}`;
+                
+                var u = 50;
+                // var x = u*(k.x+k.rx)
+                // var y = u*(k.y+k.ry)
+                // var r = k.r
+                // console.log(k.name, x, y, r);
+                keyContainer.style = `
+                    left:${u*k.rx};
+                    top:${u*k.ry};
+                    transform-origin: top left;
+                    transform: rotate(${k.r}deg) translate(${u*k.x}px,${u*k.y}px);
+                    width:${u*k.w};
+                    height:${u*k.h};
+                `;
 
                 var key = document.createElement("div");
                 key.classList = "key"
@@ -227,7 +239,10 @@
                     'x': 0,
                     'y': 0,
                     'w': 1,
-                    'h': 1
+                    'h': 1,
+                    'rx':0,
+                    'ry':0,
+                    'r':0
                 }
             }
 
@@ -269,6 +284,7 @@
 
             load_from_KLE(data){
                 const c = new kleCursor()
+                this.keys = [];
                 for(const row in data){
                     for(const el in data[row]){
                         if (typeof data[row][el] == "string"){
@@ -294,6 +310,7 @@
             }
             
             render(l, render_box){
+                render_box.textContent = '';
                 for(var k in l.keys){
                     l.keys[k].render(render_box, l.keys[k])
                 }
