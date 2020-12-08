@@ -391,13 +391,17 @@
         
         let kb = new layout();
 
+        fetch('default_layout.json')
+            .then(response => response.text())
+            .then(text => parseJsonFile(text))
+
         const KLEfileSelector = document.getElementById('KLE-input-file');
         KLEfileSelector.addEventListener('change', (event) => {
             const fileList = KLEfileSelector.files;
-            parseJsonFile(fileList[0], kb.load_from_KLE)
+            parseJsonFile(fileList[0])
         });
 
-        function parseJsonFile(file, fn){
+        function parseJsonFile(file){
             fr = new FileReader()
             fr.onload = function(){
                 kb.load_from_KLE(JSON.parse(fr.result))
