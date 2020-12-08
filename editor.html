@@ -394,6 +394,7 @@
         fetch('default_layout.json')
             .then(response => response.text())
             .then(text => kb.load_from_KLE(JSON.parse(text)))
+            .then(kb.render(kb, document.getElementById("layout")))
 
         const KLEfileSelector = document.getElementById('KLE-input-file');
         KLEfileSelector.addEventListener('change', (event) => {
