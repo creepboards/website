@@ -7,6 +7,11 @@
 
         body{
             font-family: 'Righteous', cursive;
+            display:grid;
+            grid-gap: 2vh;
+            grid-template-rows: 49vh 5vh 39vh;
+            align-items: center;
+            justify-items: center;
         }
 
         .key-container{
@@ -21,100 +26,165 @@
             grid-column: 2 / 3;
             border-radius: 5px;
             border: 1px solid #000000;
-            height:100%;
-            width:100%;
+            height:98%;
+            width:98%;
         }
 
-        #layout{
-            height: 50vh;
+        .toggles-container{
+            display: grid;
+            grid-auto-flow: column;
+            justify-content: center;
+            grid-gap: 5vw;
         }
 
-        #KLE-input-file { display: none }
+        .legend-container{
+            display:grid;
+            grid-template-rows: 1fr 1fr;
+            align-items: center;
+            height: 100%;
+            width: 60%;
+            box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.53);
+        }
+
+        .tab-container{
+            align-self: start;
+        }
+
+        .panel-container{
+            grid-row: 3 / 4;
+            display:grid;
+            grid-gap:10px;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .hidden{
+            display: None;
+        }
+
+        #layout{height: 50vh}
+
+        #KLE-input-file {display: none}
+        #CREEP-input-file {display: none}
+        #KLE-output-file {display: none}
+        #CREEP-output-file {display: none}
+        
     </style>
 </head>
 <body>
-    <div id="layout"></div>
-    
-    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div id="layout">
+    </div>
+    <div id="legend" class="legend-container ">
+        <div class="toggles-container">
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="show-keys-toggle">
+            <input type="checkbox" id="show-keys-toggle" class="mdl-switch__input" checked>
+            <span class="mdl-switch__label">Key Switches</span>
+        </label>
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="show-PCB-toggle">
+            <input type="checkbox" id="show-PCB-toggle" class="mdl-switch__input" checked>
+            <span class="mdl-switch__label">PCB outline</span>
+        </label>
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="show-LEDS-toggle">
+            <input type="checkbox" id="show-LEDS-toggle" class="mdl-switch__input" checked>
+            <span class="mdl-switch__label">LEDs</span>
+        </label>
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="show-Controller-toggle">
+            <input type="checkbox" id="show-Controller-toggle" class="mdl-switch__input" checked>
+            <span class="mdl-switch__label">Controller</span>
+        </label>
+        </div>
+        <input id="scale" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="50" tabindex="0">
+    </div>
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect tab-container">
         <div class="mdl-tabs__tab-bar">
-            <a href="#import-files-panel" class="mdl-tabs__tab is-active">Import files</a>
+            <a href="#files-panel" class="mdl-tabs__tab is-active">Import files</a>
             <a href="#layout-panel" class="mdl-tabs__tab">Layout</a>
             <a href="#macros-panel" class="mdl-tabs__tab">Macros</a>
             <a href="#settings-panel" class="mdl-tabs__tab">Settings</a>
             <a href="#price-estimator-panel" class="mdl-tabs__tab">Price Estimator</a>
         </div>
       
-        <div class="mdl-tabs__panel is-active" id="import-files-panel">
-            <div>
-                Upload KLE JSON file:
-                <input type="file" id="KLE-input-file">
-                <label for="KLE-input-file" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                    <b>Upload</b>
-                </label>
+        <div class="mdl-tabs__panel is-active" id="files-panel">
+            <div class="panel-container">
+                <div>
+                    <input type="file" id="KLE-input-file">
+                    <label for="KLE-input-file" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        <b>Upload KLE JSON file</b>
+                    </label>
+                </div>
+                <div>
+                    <input type="file" id="CREEP-input-file">
+                    <label for="CREEP-input-file" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        <b>Upload CREEP JSON file</b>
+                    </label>
+                </div>
+                <div>
+                    <input type="file" id="CREEP-output-file">
+                    <label for="CREEP-output-file" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-button--accent">
+                        <b>Export CREEP JSON file</b>
+                    </label>
+                </div>
             </div>
-            <div>
-                Export Creepboard JSON file:
-            </div>
-            
-
         </div>
         <div class="mdl-tabs__panel" id="layout-panel">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                Add Key
-            </button>
-            <br>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_type1">
-                <input checked class="mdl-radio__button" id="switch_type1" name="switch_type" type="radio" value="on">
-                <span class="mdl-radio__label">MX style switch</span>
-            </label>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_type2">
-                <input class="mdl-radio__button" id="switch_type2" name="switch_type" type="radio" value="off">
-                <span class="mdl-radio__label">Rotary Encoder</span>
-            </label>
-            <br>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting1">
-                <input checked class="mdl-radio__button" id="switch_lighting1" name="switch_lighting" type="radio" value="on">
-                <span class="mdl-radio__label">None</span>
-            </label>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting2">
-                <input class="mdl-radio__button" id="switch_lighting2" name="switch_lighting" type="radio" value="off">
-                <span class="mdl-radio__label">In-key LED</span>
-            </label>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting3">
-                <input class="mdl-radio__button" id="switch_lighting3" name="switch_lighting" type="radio" value="off">
-                <span class="mdl-radio__label">RGB led</span>
-            </label>
-            
+            <div class="panel-container">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                    <i class="material-icons">add</i>
+                </button>
+                
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_type1">
+                    <input checked class="mdl-radio__button" id="switch_type1" name="switch_type" type="radio" value="on">
+                    <span class="mdl-radio__label">MX style switch</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_type2">
+                    <input class="mdl-radio__button" id="switch_type2" name="switch_type" type="radio" value="off">
+                    <span class="mdl-radio__label">Rotary Encoder</span>
+                </label>
+                
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting1">
+                    <input checked class="mdl-radio__button" id="switch_lighting1" name="switch_lighting" type="radio" value="on">
+                    <span class="mdl-radio__label">None</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting2">
+                    <input class="mdl-radio__button" id="switch_lighting2" name="switch_lighting" type="radio" value="off">
+                    <span class="mdl-radio__label">In-key LED</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="switch_lighting3">
+                    <input class="mdl-radio__button" id="switch_lighting3" name="switch_lighting" type="radio" value="off">
+                    <span class="mdl-radio__label">RGB led</span>
+                </label>
+                
 
-            <div id="selected-key">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-x">
-                    <label class="mdl-textfield__label" for="sk-x">X position</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-y">
-                    <label class="mdl-textfield__label" for="sk-y">Y position</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-r">
-                    <label class="mdl-textfield__label" for="sk-r">Rotation</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-w">
-                    <label class="mdl-textfield__label" for="sk-w">Width</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-h">
-                    <label class="mdl-textfield__label" for="sk-h">Height</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="sk-t">
-                    <label class="mdl-textfield__label" for="t">Label</label>
+                <div id="selected-key">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-x">
+                        <label class="mdl-textfield__label" for="sk-x">X position</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-y">
+                        <label class="mdl-textfield__label" for="sk-y">Y position</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-r">
+                        <label class="mdl-textfield__label" for="sk-r">Rotation</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-w">
+                        <label class="mdl-textfield__label" for="sk-w">Width</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sk-h">
+                        <label class="mdl-textfield__label" for="sk-h">Height</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="sk-t">
+                        <label class="mdl-textfield__label" for="t">Label</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -181,7 +251,7 @@
                 Request a Quote
             </button>
         </div>
-      </div>
+    </div>
 
 
     
@@ -209,11 +279,10 @@
                 this.name = name;
             }
 
-            render(rb, k){
+            render(rb, k, u){
                 var keyContainer = document.createElement("div");
                 keyContainer.classList = "key-container";
-                
-                var u = 50;
+                console.log(u)
 
                 keyContainer.style = `
                     left:${u*k.rx};
@@ -230,6 +299,7 @@
 
                 keyContainer.appendChild(key);
                 rb.appendChild(keyContainer);
+                console.log(keyContainer)
             }
         }
 
@@ -310,9 +380,10 @@
             }
             
             render(l, render_box){
-                render_box.textContent = '';
+                const u = document.getElementById("scale").value;
+                render_box.innerHTML = '';
                 for(var k in l.keys){
-                    l.keys[k].render(render_box, l.keys[k])
+                    l.keys[k].render(render_box, l.keys[k], u)
                 }
             }
 
@@ -335,6 +406,12 @@
             }
             fr.readAsText(file)
         }
+
+        const scale = document.getElementById('scale');
+        scale.addEventListener('change', (event) => {
+            var layout = document.getElementById("layout");
+            kb.render(kb, layout)
+        });
         
 
     </script>
