@@ -64,6 +64,7 @@
 
         #layout{
             height: 50vh;
+            width: 100%;
         }
 
         #KLE-input-file {display: none}
@@ -100,7 +101,7 @@
                 Case
             </button>
         </div>
-        <input id="scale" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="50" tabindex="0">
+        <input id="scale" class="mdl-slider mdl-js-slider" type="range" min="40" max="98" value="80" tabindex="0">
     </div>
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect tab-container">
         <div class="mdl-tabs__tab-bar">
@@ -286,13 +287,13 @@
                 this.name = name;
             }
 
-            render(rb, k, u){
+            render(rb, k, u, off_x, off_y){
                 var keyContainer = document.createElement("div");
                 keyContainer.classList = "key-container";
 
                 keyContainer.style = `
-                    left:${u*k.rx};
-                    top:${u*k.ry};
+                    left:${u*k.rx + off_x};
+                    top:${u*k.ry + off_y};
                     transform-origin: top left;
                     transform: rotate(${k.r}deg) translate(${u*k.x}px,${u*k.y}px);
                     width:${u*k.w};
@@ -387,8 +388,19 @@
             render(l, render_box){
                 const u = document.getElementById("scale").value;
                 render_box.innerHTML = '';
+                var mx = 0
+                var my = 0
                 for(var k in l.keys){
-                    l.keys[k].render(render_box, l.keys[k], u)
+                    mx = Math.max(mx, l.keys[k].x + l.keys[k].w)
+                    my = Math.max(my, l.keys[k].y + l.keys[k].h)
+                }
+                console.log(mx, my)
+                var off_x = (render_box.offsetWidth - mx*u) / 2
+                var off_y = (render_box.offsetHeight  - my*u) / 2
+                
+                console.log( mx, my)
+                for(var k in l.keys){
+                    l.keys[k].render(render_box, l.keys[k], u, off_x, off_y)
                 }
             }
 
