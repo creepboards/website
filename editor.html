@@ -64,7 +64,7 @@
 
         #layout{
             height: 50vh;
-            width: 100%;
+            width: 100vw;
         }
 
         #KLE-input-file {display: none}
@@ -83,16 +83,13 @@
                 Switches
             </button>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised" disabled>
-                PCB
-            </button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised" disabled>
                 LEDs
             </button>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised" disabled>
-                Controller
+                PCB
             </button>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised" disabled>
-                Mounting Holes
+                Controller
             </button>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised" disabled>
                 Plate
@@ -101,7 +98,7 @@
                 Case
             </button>
         </div>
-        <input id="scale" class="mdl-slider mdl-js-slider" type="range" min="40" max="98" value="80" tabindex="0">
+        <input id="scale" class="mdl-slider mdl-js-slider" type="range" min="20" max="98" value="80" tabindex="0">
     </div>
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect tab-container">
         <div class="mdl-tabs__tab-bar">
@@ -391,14 +388,12 @@
                 var mx = 0
                 var my = 0
                 for(var k in l.keys){
-                    mx = Math.max(mx, l.keys[k].x + l.keys[k].w)
-                    my = Math.max(my, l.keys[k].y + l.keys[k].h)
+                    mx = Math.max(mx, l.keys[k].rx + l.keys[k].x + l.keys[k].w)
+                    my = Math.max(my, l.keys[k].ry + l.keys[k].y + l.keys[k].h)
                 }
-                console.log(mx, my)
                 var off_x = (render_box.offsetWidth - mx*u) / 2
                 var off_y = (render_box.offsetHeight  - my*u) / 2
                 
-                console.log( mx, my)
                 for(var k in l.keys){
                     l.keys[k].render(render_box, l.keys[k], u, off_x, off_y)
                 }
