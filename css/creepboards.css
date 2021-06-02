@@ -1,0 +1,159 @@
+/* haloween candy colors */
+:root {
+    /* Colorful */
+    --colorful-1:#F2CB05;
+    --colorful-2:#F2B705;
+    --colorful-3:#F27405;
+    --colorful-4:#F24405;
+    --colorful-5:#8C0303;
+    /* Bright */
+    --bright-1:#F2B705;
+    --bright-2:#F27405;
+    --bright-3:#F24405;
+    --bright-4:#403837;
+    --bright-5:#D91604;
+    /* Muted */
+    --muted-1:#F2B705;
+    --muted-2:#F27405;
+    --muted-3:#F2ECE9;
+    --muted-4:#F24405;
+    --muted-5:#403837;
+    /* Deep */
+    --deep-1:#360259;
+    --deep-2:#F24405;
+    --deep-3:#403837;
+    --deep-4:#730202;
+    --deep-5:#400101;
+    /* Dark */
+    --dark-1:#320140;
+    --dark-2:#593B02;
+    --dark-3:#403837;
+    --dark-4:#400101;
+    --dark-5:#0D0000;
+
+    --shadow:0 1px 4px rgba(0, 0, 0, .6);
+}
+
+/* vintage halloween poster colors */
+/* :root { */
+#DNE{
+    /* Colorful */
+    --colorful-1:#1F3473;
+    --colorful-2:#152B59;
+    --colorful-3:#F2D479;
+    --colorful-4:#D94032;
+    --colorful-5:#732929;
+    /* Bright */
+    --bright-1:#1F3473;
+    --bright-2:#F2D544;
+    --bright-3:#F2D479;
+    --bright-4:#D95A2B;
+    --bright-5:#D94032;
+    /* Muted */
+    --muted-1:#1F3473;
+    --muted-2:#768FA6;
+    --muted-3:#F2D680;
+    --muted-4:#F2E3B3;
+    --muted-5:#732929;
+    /* Deep */
+    --deep-1:#1A2873;
+    --deep-2:#1F3473;
+    --deep-3:#152B59;
+    --deep-4:#F2D479;
+    --deep-5:#732929;
+    /* Dark */
+    --dark-1:#161426;
+    --dark-2:#1A3073;
+    --dark-3:#152B59;
+    --dark-4:#222601;
+    --dark-5:#732929;
+
+}
+
+body{
+    margin:0px;
+    font-size: 15px;
+}
+
+.layout{
+    display: grid;
+    grid-template-rows: 55px 10fr 2fr;
+    height: 100%;
+}
+
+    .header{
+        background-color: var(--deep-3);
+        box-shadow: var(--shadow);
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        justify-items: center;
+        align-items: center;
+        height: 55px;
+    }
+
+        .logo{
+            content:url("../img/logo.png");
+            height:55px;
+        }
+
+        .navigation{
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 10px;
+        }
+
+            .navigation-link{
+                color: var(--muted-3);
+            }
+
+    .content{
+        background-color: var(--muted-3);
+        display: grid;
+    }
+
+        .steps{
+            justify-self: center;
+            height: 40px;
+            padding:10px 20px 10px 20px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 10px;
+            box-shadow: var(--shadow);
+        }
+
+    .footer{
+        background-color: var(--deep-3);
+    }
+
+button{
+    margin: auto auto;
+    padding: 12px 24px;
+    border-width: 0;
+    outline: none;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    transition: background-color .3s;
+    color: var(--muted-3);
+    font-size: inherit;
+}
+
+.primary-button{
+    background-color: var(--muted-2);
+}
+
+.primary-button:hover, .primary-button:focus{
+    background-color: var(--deep-2);
+}
+
+.secondary-button{
+    background-color: var(--deep-1);
+}
+
+.secondary-button:hover, .secondary-button:focus{
+    background-color: var(--dark-1);
+}
+
+.hidden{
+    display:none;
+}
