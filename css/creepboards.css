@@ -73,6 +73,7 @@
 body{
     margin:0px;
     font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .layout{
@@ -126,8 +127,8 @@ body{
         background-color: var(--deep-3);
     }
 
-button{
-    margin: auto auto;
+.button {
+    margin: 4px;
     padding: 12px 24px;
     border-width: 0;
     outline: none;
@@ -136,6 +137,7 @@ button{
     transition: background-color .3s;
     color: var(--muted-3);
     font-size: inherit;
+    
 }
 
 .primary-button{

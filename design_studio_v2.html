@@ -1,58 +1,65 @@
 <html>
-    <head>
-        <title>Creepboards Design Studio</title>
-        <link rel="stylesheet" href="css/creepboards.css">
-    </head>
-    <body>
-        <div class="layout">
-            <div class="header">
-                <!-- <img class="logo" src="./img/logo.png"> -->
-                <img class="logo">
-                <div class="navigation">
-                    <a class="navigation-link" href="">Home</a>
-                    <a class="navigation-link" href="">Design Studio</a>
-                    <a class="navigation-link" href="">About</a>
-                    <a class="navigation-link" href="">Something else</a>
-                </div>
-                <div>information</div>
+
+<head>
+    <title>Creepboards Design Studio</title>
+    <link rel="stylesheet" href="css/creepboards.css">
+</head>
+
+<body>
+    <div class="layout">
+        <div class="header">
+            <!-- <img class="logo" src="./img/logo.png"> -->
+            <img class="logo">
+            <div class="navigation">
+                <a class="navigation-link" href="">Home</a>
+                <a class="navigation-link" href="">Design Studio</a>
+                <a class="navigation-link" href="">About</a>
+                <a class="navigation-link" href="">Something else</a>
             </div>
-            <div class="content">
-                <div class="steps">
-                    <button class="secondary-button">template</button>
-                    <button class="secondary-button">layout</button>
-                    <button class="secondary-button">case</button>
-                    <button class="secondary-button">assembly</button>
-                    <button class="primary-button">accessories</button>
-                    <button class="secondary-button">summary</button>
-                </div>
-                <div id="template-page" class="page">
-                    Pick a template to start your layout
-                    <div class="layout-preview">your preview here</div>
-                    <div class="template-selector">
-                        <button class="secondary-button">Blank design</button>
-                        <button class="secondary-button">Upload KLE json</button>
-                        <button class="secondary-button">Upload Creepboards json</button>
-                        <button class="secondary-button">Ergodox</button>
-                        <button class="secondary-button">ANSI 104</button>
-                        <button class="secondary-button">12-key macropad</button>
-                        <button class="secondary-button">ISO 60%</button>
-                    </div>
-                <div id="layout-page" class="page"></div>
-                </div>
-                <div id="case-page" class="page hidden">
-                    case
-                </div>
-                <div id="assembly-page" class="page hidden">
-                    assembly
-                </div>
-                <div id="accessories-page" class="page hidden">
-                    accessories
-                </div>
-                <div id="summary-page" class="page hidden">
-                    summary
-                </div>
-            </div>
-            <div class="footer"></div>
+            <div>information</div>
         </div>
-    </body>
+        <div class="content">
+            <div class="steps">
+                <button class="button secondary-button">template</button>
+                <button class="button secondary-button">layout</button>
+                <button class="button secondary-button">case</button>
+                <button class="button secondary-button">assembly</button>
+                <button class="button primary-button">accessories</button>
+                <button class="button secondary-button">summary</button>
+            </div>
+            <div id="template-page" class="page">
+                Pick a template to start your layout
+                <div class="layout-preview">your preview here</div>
+                <div class="template-selector">
+                    <label for="KLE-input-file" class="button secondary-button">
+                        Upload KLE JSON file
+                    </label>
+                    <input class="hidden" type="file" id="KLE-input-file">
+                    <button class="button secondary-button">Blank design</button>
+                    <button class="button secondary-button">Upload KLE json</button>
+                    <button class="button secondary-button">Upload Creepboards json</button>
+                    <button class="button secondary-button">Ergodox</button>
+                    <button class="button secondary-button">ANSI 104</button>
+                    <button class="button secondary-button">12-key macropad</button>
+                    <button class="button secondary-button">ISO 60%</button>
+                </div>
+                <div id="layout-page" class="page"></div>
+            </div>
+            <div id="case-page" class="page hidden">
+                case
+            </div>
+            <div id="assembly-page" class="page hidden">
+                assembly
+            </div>
+            <div id="accessories-page" class="page hidden">
+                accessories
+            </div>
+            <div id="summary-page" class="page hidden">
+                summary
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+
 </html>
