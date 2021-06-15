@@ -33,7 +33,7 @@ class kleCursor{
     }
 
     getKey(c, name = ""){
-        let k = new key();
+        let k = new Switch();
         k.loadFromKleCursor(c, name)
         c.state['x'] += c.state['w']
         c.state['w'] = 1
@@ -47,11 +47,11 @@ class KeyboardLayout{
     
     load_kle(data){
         const c = new kleCursor()
-        this.keys = [];
+        this.components = [];
         for(const row in data){
             for(const el in data[row]){
                 if (typeof data[row][el] == "string"){
-                    this.keys.push(c.getKey(c, data[row][el]))
+                    this.components.push(c.getKey(c, data[row][el]))
                 } else {
                     c.update(c, data[row][el])
                 }
@@ -69,7 +69,15 @@ class KeyboardLayout{
     }
 
     render_html(){
-
+        var html = ''
+        for(const c in this.components){
+            html += this.components[c].render_html()
+        }
+        Array.from(document.getElementsByClassName("layout-preview")).forEach(
+            function (element){
+                element.innerHTML = html;
+            }
+        )
     }
 }
 
@@ -94,31 +102,38 @@ class Component{
     }
 
     render_html(){
-
+        console.log("no render function for this component");
+        return ("no render function for this component");
     }
 }
 
 class Switch extends Component{
 
-    render_html(rb, k, u, off_x, off_y){
-        var keyContainer = document.createElement("div");
-        keyContainer.classList = "key-container";
+    render_html(){
+        var u = 50;
+        var html = `
+            <div class="switch"> 
+                <div style="left: ${u*this.rx+.5}px; top: ${u*this.ry+.5}px; width: ${u*this.w-1}px; height: ${u*this.h-1}px;transform-origin: top left; transform: rotate(${this.r}deg) translate(${u*this.x}px,${u*this.y}px);" class="switch-body">
+                    <div style="left: 4px; top: 4px; width: ${u*this.w-10}px; height: ${u*this.h-15}px;" class="switch-surface">
+                        <div class="switch-name">  
+                            ${this.name}
+                        </div> 
+                    </div> 
+                </div>    
+            </div>
+        `
+        return (html)
+    }
 
-        keyContainer.style = `
-            left:${u*k.rx + off_x};
-            top:${u*k.ry + off_y};
-            transform-origin: top left;
-            transform: rotate(${k.r}deg) translate(${u*k.x}px,${u*k.y}px);
-            width:${u*k.w};
-            height:${u*k.h};
-        `;
-
-        var key = document.createElement("div");
-        key.classList = "key"
-        key.innerText = k.name;
-
-        keyContainer.appendChild(key);
-        rb.appendChild(keyContainer);
+    loadFromKleCursor(c, name){
+        this.x = c.state.x;
+        this.y = c.state.y;
+        this.r = c.state.r;
+        this.rx = c.state.rx;
+        this.ry = c.state.ry;
+        this.w = c.state.w;
+        this.h = c.state.h;
+        this.name = name;
     }
 
 }
@@ -142,3 +157,12 @@ class Cpu extends Component{
 class Usb extends Component{
     
 }
+
+// define main layout object
+let kb = new KeyboardLayout();
+
+// load and parse default layout
+fetch('default_layout.json')
+    .then(response => response.text())
+    .then(text => kb.load_kle(JSON.parse(text)))
+    .then(e => kb.render_html())
