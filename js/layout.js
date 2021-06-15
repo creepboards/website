@@ -112,15 +112,13 @@ class Switch extends Component{
     render_html(){
         var u = 50;
         var html = `
-            <div class="switch"> 
-                <div style="left: ${u*this.rx+.5}px; top: ${u*this.ry+.5}px; width: ${u*this.w-1}px; height: ${u*this.h-1}px;transform-origin: top left; transform: rotate(${this.r}deg) translate(${u*this.x}px,${u*this.y}px);" class="switch-body">
-                    <div style="left: 4px; top: 4px; width: ${u*this.w-10}px; height: ${u*this.h-15}px;" class="switch-surface">
-                        <div class="switch-name">  
-                            ${this.name}
-                        </div> 
+            <div class="switch-body" style="left: ${u*this.rx}px; top: ${u*this.ry}px; width: ${u*this.w-1.5}px; height: ${u*this.h-1.5}px;transform-origin: top left; transform: rotate(${this.r}deg) translate(${u*this.x}px,${u*this.y}px);">
+                <div style="left: 3px; top: 3px; width: ${u*this.w-10}px; height: ${u*this.h-15}px;" class="switch-surface">
+                    <div class="switch-name">  
+                        ${this.name}
                     </div> 
-                </div>    
-            </div>
+                </div> 
+            </div>    
         `
         return (html)
     }
