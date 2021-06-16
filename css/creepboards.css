@@ -115,7 +115,7 @@ body{
         display: grid;
     }
 
-        .steps{
+        .pager-container{
             justify-self: center;
             height: 40px;
             padding:10px 20px 10px 20px;
@@ -146,7 +146,7 @@ body{
     background-color: var(--muted-2);
 }
 
-.primary-button:hover, .primary-button:focus{
+.primary-button:hover{
     background-color: var(--deep-2);
 }
 
@@ -154,7 +154,7 @@ body{
     background-color: var(--deep-1);
 }
 
-.secondary-button:hover, .secondary-button:focus{
+.secondary-button:hover{
     background-color: var(--dark-1);
 }
 
@@ -168,22 +168,6 @@ body{
     width: auto;
     height: 500px;
     overflow: auto;
-}
-.key-container{
-    position:absolute;
-    display: grid;
-    grid-template-columns: 1px 1fr 1px;
-    grid-template-rows: 1px 1fr 1px;
-}
-
-.key{
-    grid-row: 2 / 3;
-    grid-column: 2 / 3;
-    border-radius: 2px;
-    border: 1px solid #000000;
-    height:100%;
-    width:100%;
-    margin: 2px;
 }
 
 .switch-body{

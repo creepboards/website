@@ -45,6 +45,24 @@ class kleCursor{
 // layout class
 class KeyboardLayout{
     
+    download(data, filename, type) {
+        var file = new Blob([data], {type: type});
+        if (window.navigator.msSaveOrOpenBlob) // IE10+
+            window.navigator.msSaveOrOpenBlob(file, filename);
+        else { // Others
+            var a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function() {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);  
+            }, 0); 
+        }
+    }
+
     load_kle(data){
         const c = new kleCursor()
         this.components = [];
@@ -65,7 +83,26 @@ class KeyboardLayout{
     }
 
     export_creep(){
-
+        console.log('trying to export creep boards file');
+        // call function from download.js
+        var data = 'test data';
+        var filename = 'test_filename.json';
+        var type = 'text/plain';
+        var file = new Blob([data], {type: type});
+        if (window.navigator.msSaveOrOpenBlob) // IE10+
+            window.navigator.msSaveOrOpenBlob(file, filename);
+        else { // Others
+            var a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function() {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);  
+            }, 0); 
+        }
     }
 
     render_html(){
@@ -79,6 +116,7 @@ class KeyboardLayout{
             }
         )
     }
+
 }
 
 // component class children:(switch, led, hole, encoder, cpu, usb-port)
@@ -164,3 +202,7 @@ fetch('default_layout.json')
     .then(response => response.text())
     .then(text => kb.load_kle(JSON.parse(text)))
     .then(e => kb.render_html())
+
+// document.getElementById('creep-export').addEventListener('click', kb.export_creep);
+
+document.querySelector("#summary-page > button").addEventListener('click', kb.export_creep);

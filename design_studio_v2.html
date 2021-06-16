@@ -3,6 +3,8 @@
 <head>
     <title>Creepboards Design Studio</title>
     <link rel="stylesheet" href="css/creepboards.css">
+    <script type="module" src="js/pager.js"></script>
+    <script type="module" src="js/layout.js" defer></script>
 </head>
 
 <body>
@@ -19,13 +21,13 @@
             <div>information</div>
         </div>
         <div class="content">
-            <div class="steps">
-                <button class="button secondary-button">template</button>
-                <button class="button secondary-button">layout</button>
-                <button class="button secondary-button">case</button>
-                <button class="button secondary-button">assembly</button>
-                <button class="button primary-button">accessories</button>
-                <button class="button secondary-button">summary</button>
+            <div class="pager-container">
+                <button class="button primary-button" value='template-page'>template</button>
+                <button class="button secondary-button" value='layout-page'>layout</button>
+                <button class="button secondary-button" value='case-page'>case</button>
+                <button class="button secondary-button" value='assembly-page'>assembly</button>
+                <button class="button secondary-button" value='accessories-page'>accessories</button>
+                <button class="button secondary-button" value='summary-page'>summary</button>
             </div>
             <div id="template-page" class="page">
                 Pick a template to start your layout
@@ -45,7 +47,9 @@
                     <button class="button secondary-button">12-key macropad</button>
                     <button class="button secondary-button">ISO 60%</button>
                 </div>
-                <div id="layout-page" class="page"></div>
+            </div>
+            <div id="layout-page" class="page hidden">
+                Layout
             </div>
             <div id="case-page" class="page hidden">
                 case
@@ -57,13 +61,10 @@
                 accessories
             </div>
             <div id="summary-page" class="page hidden">
-                summary
+                <button id="creep-export" class="button primary-button">export creepboards json file</button>
             </div>
         </div>
         <div class="footer"></div>
     </div>
 </body>
-
-<script type="module" src="js/layout.js" defer></script>
-
 </html>
