@@ -3,6 +3,18 @@
 <head>
     <title>Creepboards Design Studio</title>
     <link rel="stylesheet" href="css/creepboards.css">
+
+    <!-- FIREBASE things -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="/__/firebase/8.6.8/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="/__/firebase/8.6.8/firebase-analytics.js"></script>
+
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+
     <script type="module" src="js/pager.js"></script>
     <script type="module" src="js/layout.js" defer></script>
 </head>
@@ -22,34 +34,26 @@
         </div>
         <div class="content">
             <div class="pager-container">
-                <button class="button primary-button" value='template-page'>template</button>
-                <button class="button secondary-button" value='layout-page'>layout</button>
+                <button class="button primary-button" value='layout-page'>layout</button>
                 <button class="button secondary-button" value='case-page'>case</button>
                 <button class="button secondary-button" value='assembly-page'>assembly</button>
                 <button class="button secondary-button" value='accessories-page'>accessories</button>
                 <button class="button secondary-button" value='summary-page'>summary</button>
             </div>
-            <div id="template-page" class="page">
+            <div id="layout-page" class="page">
                 Pick a template to start your layout
                 <div class="layout-preview">your preview here</div>
                 <div class="template-selector">
-                    <label for="KLE-input-file" class="button secondary-button">
-                        Upload KLE JSON file
+                    <label for="layout-file-upload" class="button secondary-button">
+                        Upload a layout JSON file
                     </label>
-                    <input class="hidden" type="file" id="KLE-input-file">
-                    <label for="CREEP-input-file" class="button secondary-button">
-                        Upload Creepboards JSON file
-                    </label>
-                    <input class="hidden" type="file" id="CREEP-input-file">
+                    <input class="hidden" type="file" id="layout-file-upload">
                     <button class="button secondary-button">Blank design</button>
                     <button class="button secondary-button">Ergodox</button>
                     <button class="button secondary-button">ANSI 104</button>
                     <button class="button secondary-button">12-key macropad</button>
                     <button class="button secondary-button">ISO 60%</button>
                 </div>
-            </div>
-            <div id="layout-page" class="page hidden">
-                Layout
             </div>
             <div id="case-page" class="page hidden">
                 case
