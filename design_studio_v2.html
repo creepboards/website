@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <title>Creepboards Design Studio</title>
+    <link rel="stylesheet" href="css/creepboards.css">
+
+    <!-- FIREBASE things -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script> -->
+
+    <script type="module" src="js/pager.js"></script>
+    <script type="module" src="js/layout.js" defer></script>
+</head>
+
+<body>
+    <div class="layout">
+        <div class="header">
+            <!-- <img class="logo" src="./img/logo.png"> -->
+            <img class="logo">
+            <div class="navigation">
+                <a class="navigation-link" href="">Home</a>
+                <a class="navigation-link" href="">Design Studio</a>
+                <a class="navigation-link" href="">About</a>
+                <a class="navigation-link" href="">Something else</a>
+            </div>
+            <div>information</div>
+        </div>
+        <div class="content">
+            <div class="pager-container">
+                <button class="button primary-button" value='layout-page'>layout</button>
+                <button class="button secondary-button" value='case-page'>case</button>
+                <button class="button secondary-button" value='assembly-page'>assembly</button>
+                <button class="button secondary-button" value='accessories-page'>accessories</button>
+                <button class="button secondary-button" value='summary-page'>summary</button>
+            </div>
+            <div id="layout-page" class="page">
+                Pick a template to start your layout
+                <div class="layout-preview">your preview here</div>
+                <div class="template-selector">
+                    <label for="layout-file-upload" class="button secondary-button">
+                        Upload a layout JSON file
+                    </label>
+                    <input class="hidden" type="file" id="layout-file-upload">
+                    <button class="button secondary-button">Blank design</button>
+                    <button class="button secondary-button">Ergodox</button>
+                    <button class="button secondary-button">ANSI 104</button>
+                    <button class="button secondary-button">12-key macropad</button>
+                    <button class="button secondary-button">ISO 60%</button>
+                </div>
+            </div>
+            <div id="case-page" class="page hidden">
+                case
+            </div>
+            <div id="assembly-page" class="page hidden">
+                assembly
+            </div>
+            <div id="accessories-page" class="page hidden">
+                accessories
+            </div>
+            <div id="summary-page" class="page hidden">
+                <button id="creep-export" class="button primary-button">export creepboards json file</button>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
