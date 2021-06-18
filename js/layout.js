@@ -63,7 +63,7 @@ class KeyboardLayout{
         }
     }
 
-    load_kle(data){
+    load_from_json(data){
         const c = new kleCursor()
         this.components = [];
         for(const row in data){
@@ -76,13 +76,10 @@ class KeyboardLayout{
             }
             c.newRow(c)
         }
+        this.render_html();
     }
 
-    load_creep(){
-
-    }
-
-    export_creep(){
+    export_to_json(){
         console.log('trying to export creep boards file');
         // call function from download.js
         var data = 'test data';
@@ -200,9 +197,27 @@ let kb = new KeyboardLayout();
 // load and parse default layout
 fetch('default_layout.json')
     .then(response => response.text())
-    .then(text => kb.load_kle(JSON.parse(text)))
-    .then(e => kb.render_html())
+    .then(text => kb.load_from_json(JSON.parse(text)));
 
 // document.getElementById('creep-export').addEventListener('click', kb.export_creep);
 
-document.querySelector("#summary-page > button").addEventListener('click', kb.export_creep);
+document.querySelector("#summary-page > button").addEventListener('click', kb.export_to_json);
+
+
+const layout_file_upload = document.getElementById("layout-file-upload");
+layout_file_upload.addEventListener("change", process_layout_file, false);
+
+function process_layout_file() {
+    var file = document.getElementById("layout-file-upload").files[0];
+    console.log(file);
+    file_to_json_object(file)
+}
+
+// take json file and parse into a json object which goes into layout
+function file_to_json_object(file){
+    var fr = new FileReader()
+    fr.onload = function(){
+        kb.load_from_json(JSON.parse(fr.result))
+    }
+    fr.readAsText(file);
+}
