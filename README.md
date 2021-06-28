@@ -1,5 +1,15 @@
-How to run:
+Setup:
 
-`npm install -g live-server`
+`npm install -g live-firebase-tools`
 
-`live-server`
+Run dev enviroment:
+
+`firebase serve`
+
+Run Beta enviroment:
+
+`firebase hosting:channel:deploy beta`
+
+deploy new version of main:
+
+`firbase deploy`
