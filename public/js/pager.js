@@ -8,6 +8,7 @@ Array.from(document.getElementsByClassName("pager-container")).forEach(
                     select_button(button);
                     hide_all_pages(container);
                     display_page(container, button.value);
+                    console.log('listening to:', button);
                 });
             }
         )
