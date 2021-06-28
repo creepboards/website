@@ -47,7 +47,7 @@ function select_button(button){
 function hide_all_pages(container) {
     var siblings = getSiblings(container);
     for(var i in siblings){
-        siblings[i].classList.add("hidden");
+        siblings[i].hidden = true;
     }
 }
 
@@ -55,7 +55,7 @@ function display_page(container, id){
     var siblings = getSiblings(container);
     for(var i in siblings){
         if (siblings[i].id == id){
-            siblings[i].classList.remove("hidden");
+            siblings[i].hidden = false;
         }
     }
 }
