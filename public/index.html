@@ -4,63 +4,70 @@
     <title>Creepboards Design Studio</title>
     <link rel="stylesheet" href="css/creepboards.css">
 
-    <!-- FIREBASE things -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <!-- FIREBASE SETUP -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
-    <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-        apiKey: "AIzaSyAJ80tTH5ya9kUo0jpq5laxCJTyKbPZb0w",
-        authDomain: "creepboards.firebaseapp.com",
-        databaseURL: "https://creepboards-default-rtdb.firebaseio.com",
-        projectId: "creepboards",
-        storageBucket: "creepboards.appspot.com",
-        messagingSenderId: "895884556050",
-        appId: "1:895884556050:web:60a77c0eca20af920fa5cb",
-        measurementId: "G-EBERKXW5J6"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    </script>
+        <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAJ80tTH5ya9kUo0jpq5laxCJTyKbPZb0w",
+            authDomain: "creepboards.firebaseapp.com",
+            databaseURL: "https://creepboards-default-rtdb.firebaseio.com",
+            projectId: "creepboards",
+            storageBucket: "creepboards.appspot.com",
+            messagingSenderId: "895884556050",
+            appId: "1:895884556050:web:60a77c0eca20af920fa5cb",
+            measurementId: "G-EBERKXW5J6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
+    <!-- END FIREBASE SETUP -->
+    <!-- MATERIAL CSS SETUP https://materializecss.com/ -->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- END MATERIAL CSS SETUP -->
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/pager.js"></script>
     <script type="module" src="js/layout.js" defer></script>
 </head>
 
 <body>
-    <div class="pager-container">
-        <button class="button primary-button" value='home-page'>Home</button>
-        <button class="button secondary-button" value='design-studio-page'>Design Studio</button>
-        <button class="button secondary-button" value='about-page'>About</button>
-    </div>
-    <div id="home-page">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="center brand-logo">Creepboards</a>
+            <ul id="nav-pager" class="pager-container left">
+                <li id='home-page'><a>Home</a></li>
+                <li id='design-studio-page'><a>Design Studio</a></li>
+                <li id='about-page'><a>About</a></li>
+            </ul>
+            <ul class="right">
+                <li id="login-button"><a class="waves-effect waves-light btn">Login / Signup</a></li>
+                <li id="logout-button" hidden><a class="waves-effect waves-light btn">Logout</a></li>
+            </ul>                
+        </div>
+    </nav>
+    <div id="nav-pager:home-page">
         home page
     </div>
-    <div id="about-page" hidden>
+    <div id="nav-pager:about-page" hidden>
         about page
     </div>
-    <div id="design-studio-page" hidden>
+    <div id="nav-pager:design-studio-page" hidden>
         <div class="layout">
-            <div class="header">
-                <img class="logo">
-                <div class="navigation">
-                    <a class="navigation-link" href="">Home</a>
-                    <a class="navigation-link" href="">Design Studio</a>
-                    <a class="navigation-link" href="">About</a>
-                    <a class="navigation-link" href="">Something else</a>
-                </div>
-                <button id="login-button" class="button primary-button">Login / Signup</button>
-                <button id="logout-button" class="button primary-button" hidden>logout</button>
-            </div>
+            
             <div class="content">
                 <div class="pager-container">
                     <button class="button primary-button" value='layout-page'>layout</button>
