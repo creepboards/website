@@ -84,6 +84,9 @@
                   <optgroup label="Your Saved Templates">
                     <option value="1">My Design</option>
                   </optgroup>
+                  <optgroup label="Active Group Buys">
+                    <option value="1">someone's cool design</option>
+                  </optgroup>
                   <optgroup label="Community Templates">
                     <option value="1">Blank Design</option>
                     <option value="2">Ergodox</option>
@@ -93,10 +96,11 @@
                 </select>
                 <label>Template</label>
             </div>
-            <label for="layout-file-upload" class="button secondary-button">
-                Create Template from JSON file
+
+            <label for="layout-file-upload" class="waves-effect waves-light btn-large">
+                <i class="material-icons right">file_upload</i>upload JSON file
             </label>
-            <input class="hidden" type="file" id="layout-file-upload">
+            <input type="file" id="layout-file-upload" hidden>
               
             <div class="layout-preview">your preview here</div>
             
