@@ -75,33 +75,31 @@
             <li id="case-page" class="waves-effect"><a href="#!">case</a></li>
             <li id="assembly-page" class="waves-effect"><a href="#!">assembly</a></li>
             <li id="accessories-page" class="waves-effect"><a href="#!">accessories</a></li>
-            <li id="summary-page" class="waves-effect"><a href="#!">summary</a></li>
+            <li id="checkout-page" class="waves-effect"><a href="#!">checkout</a></li>
         </ul>
         <div id="design-studio-pager:layout-page" class="page">
             <div class="input-field col s12">
                 <select>
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                  <option value="" disabled selected>Select a template</option>
+                  <optgroup label="Your Saved Templates">
+                    <option value="1">My Design</option>
+                  </optgroup>
+                  <optgroup label="Community Templates">
+                    <option value="1">Blank Design</option>
+                    <option value="2">Ergodox</option>
+                    <option value="3">ISO 60%</option>
+                    <option value="3">ANSI 104</option>
+                  </optgroup>
                 </select>
-                <label>Materialize Select</label>
-              </div>
-
-              
-            <br><br>
-            <div class="layout-preview">your preview here</div>
-            <div class="template-selector">
-                <label for="layout-file-upload" class="button secondary-button">
-                    Upload a layout JSON file
-                </label>
-                <input class="hidden" type="file" id="layout-file-upload">
-                <button class="button secondary-button">Blank design</button>
-                <button class="button secondary-button">Ergodox</button>
-                <button class="button secondary-button">ANSI 104</button>
-                <button class="button secondary-button">12-key macropad</button>
-                <button class="button secondary-button">ISO 60%</button>
+                <label>Template</label>
             </div>
+            <label for="layout-file-upload" class="button secondary-button">
+                Create Template from JSON file
+            </label>
+            <input class="hidden" type="file" id="layout-file-upload">
+              
+            <div class="layout-preview">your preview here</div>
+            
         </div>
         <div id="design-studio-pager:case-page" class="page" hidden>
             case
@@ -112,7 +110,7 @@
         <div id="design-studio-pager:accessories-page" class="page" hidden>
             accessories
         </div>
-        <div id="design-studio-pager:summary-page" class="page" hidden>
+        <div id="design-studio-pager:checkout-page" class="page" hidden>
             <button id="creep-export" class="button primary-button">export creepboards json file</button>
         </div>
     </div>
