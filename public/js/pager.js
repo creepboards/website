@@ -14,7 +14,6 @@ Array.from(document.getElementsByClassName("pager-container")).forEach(
                         if (page.id == target_id){
                             page.hidden = false;
                         } else {
-                            console.log(page.id, target_id)
                             page.hidden = true;
                         }
                     });

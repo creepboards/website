@@ -39,6 +39,10 @@
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- END MATERIAL CSS SETUP -->
+    
+    <!-- Material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/pager.js"></script>
     <script type="module" src="js/layout.js" defer></script>
@@ -66,44 +70,50 @@
         about page
     </div>
     <div id="nav-pager:design-studio-page" hidden>
-        <div class="layout">
-            
-            <div class="content">
-                <div class="pager-container">
-                    <button class="button primary-button" value='layout-page'>layout</button>
-                    <button class="button secondary-button" value='case-page'>case</button>
-                    <button class="button secondary-button" value='assembly-page'>assembly</button>
-                    <button class="button secondary-button" value='accessories-page'>accessories</button>
-                    <button class="button secondary-button" value='summary-page'>summary</button>
-                </div>
-                <div id="layout-page" class="page">
-                    Pick a template to start your layout
-                    <div class="layout-preview">your preview here</div>
-                    <div class="template-selector">
-                        <label for="layout-file-upload" class="button secondary-button">
-                            Upload a layout JSON file
-                        </label>
-                        <input class="hidden" type="file" id="layout-file-upload">
-                        <button class="button secondary-button">Blank design</button>
-                        <button class="button secondary-button">Ergodox</button>
-                        <button class="button secondary-button">ANSI 104</button>
-                        <button class="button secondary-button">12-key macropad</button>
-                        <button class="button secondary-button">ISO 60%</button>
-                    </div>
-                </div>
-                <div id="case-page" class="page" hidden>
-                    case
-                </div>
-                <div id="assembly-page" class="page" hidden>
-                    assembly
-                </div>
-                <div id="accessories-page" class="page" hidden>
-                    accessories
-                </div>
-                <div id="summary-page" class="page" hidden>
-                    <button id="creep-export" class="button primary-button">export creepboards json file</button>
-                </div>
+        <ul id="design-studio-pager" class="pager-container center pagination">
+            <li id="layout-page" class="active"><a href="#!">layout</a></li>
+            <li id="case-page" class="waves-effect"><a href="#!">case</a></li>
+            <li id="assembly-page" class="waves-effect"><a href="#!">assembly</a></li>
+            <li id="accessories-page" class="waves-effect"><a href="#!">accessories</a></li>
+            <li id="summary-page" class="waves-effect"><a href="#!">summary</a></li>
+        </ul>
+        <div id="design-studio-pager:layout-page" class="page">
+            <div class="input-field col s12">
+                <select>
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+                <label>Materialize Select</label>
+              </div>
+
+              
+            <br><br>
+            <div class="layout-preview">your preview here</div>
+            <div class="template-selector">
+                <label for="layout-file-upload" class="button secondary-button">
+                    Upload a layout JSON file
+                </label>
+                <input class="hidden" type="file" id="layout-file-upload">
+                <button class="button secondary-button">Blank design</button>
+                <button class="button secondary-button">Ergodox</button>
+                <button class="button secondary-button">ANSI 104</button>
+                <button class="button secondary-button">12-key macropad</button>
+                <button class="button secondary-button">ISO 60%</button>
             </div>
+        </div>
+        <div id="design-studio-pager:case-page" class="page" hidden>
+            case
+        </div>
+        <div id="design-studio-pager:assembly-page" class="page" hidden>
+            assembly
+        </div>
+        <div id="design-studio-pager:accessories-page" class="page" hidden>
+            accessories
+        </div>
+        <div id="design-studio-pager:summary-page" class="page" hidden>
+            <button id="creep-export" class="button primary-button">export creepboards json file</button>
         </div>
     </div>
 </body>
