@@ -6,11 +6,13 @@ Array.from(document.getElementsByClassName("pager-container")).forEach(
                 // attach listener to each selector
                 button.addEventListener("click", function(){
                     // get all elements with the prefix
-                    var all_pages = document.querySelectorAll(`[id^="${button.parentNode.id}:"]`);
+                    var page_prefix = button.parentNode.id.replace(/\d+$/, "")+":"
+                    console.log(page_prefix);
+                    var all_pages = document.querySelectorAll(`[id^="${page_prefix}"]`);
                     
                     // hide all but the selected page
                     [].forEach.call(all_pages, function(page) {
-                        const target_id = `${button.parentNode.id}:${button.id}`
+                        const target_id = `${page_prefix}${button.id}`
                         if (page.id == target_id){
                             page.hidden = false;
                         } else {
