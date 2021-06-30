@@ -46,6 +46,7 @@
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/pager.js"></script>
     <script type="module" src="js/layout.js" defer></script>
+    <script type="module" src="js/materialize.js" defer></script>
 </head>
 
 <body>
@@ -56,6 +57,7 @@
                 <li id='home-page'><a>Home</a></li>
                 <li id='design-studio-page'><a>Design Studio</a></li>
                 <li id='about-page'><a>About</a></li>
+                <li id='documentation-page'><a>Documentation</a></li>
             </ul>
             <ul class="right">
                 <li id="login-button"><a class="waves-effect waves-light btn">Login / Signup</a></li>
@@ -64,10 +66,80 @@
         </div>
     </nav>
     <div id="nav-pager:home-page">
-        home page
-    </div>
-    <div id="nav-pager:about-page" hidden>
-        about page
+        <div class="container">
+            <div class="center">
+                <h4><i>Keyboards with a mind of their own</i></h4>
+                <p class="flow-text">We make affordable, bespoke, one-of-a-kind mechanical keyboards; packed with features. We aim to dramatically expand what your keyboard can be and what it can do.</p>
+                <a class="waves-effect waves-light btn-large">
+                    design yours today<i class="material-icons right">draw</i>
+                </a>
+            </div>
+            <h2>features</h2>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Fully Configureable Layouts<i class="right material-icons">keyboard</i></span>
+                            <p>Arrange up to 200 keys in any pattern you like. Optomize your layout for your workflow weather that's editing video, streaming your favorite game, or just how you like to type. Every key can be assigned a macro.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Zero-install reprogramming<i class="right material-icons">phonelink_setup</i></span>
+                            <p>Use any WiFi enabled device to securely reprogram your keyboard without installing or flashing anything. Simply connect to your keyboard's wifi and open a browser.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">WiFi<i class="right material-icons">wifi</i></span>
+                            <p>Use WiFi connectivity to reconfigure your keyboard from your phone, download firmware updates, trigger a home automation, access your favorite web API....and anything else you can imagine!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">BlueTooth<i class="right material-icons">bluetooth</i></span>
+                            <p>Connect to a second device via BlueTooth. You can even switch between the devices with the press of a key once paired.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Addressable RGB<i class="right material-icons">light_mode</i></span>
+                            <p>Make your board stand out with dazzling full-color lighting. Customize each individual light to change color in response to your keypresses, API calls, or your set pattern. Don't want to bother getting lost in the details? Use one of our ready made patterns.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Rotary Encoders<i class="right material-icons">flip_camera_android</i></span>
+                            <p>Weather you want a rotary encoder with detents, or without, or several of both; we've got you covered. All encoders have a push switch and have capacitive touch capabilities. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m2"></div>
+                <div class="col s12 m8">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title"><b>Did we miss something?<i class="right material-icons">feedback</i></b></span>
+                            <p>We're always adding new capabilities to our keyboard's hardware and software. Let us know what features you want in your keyboard.
+                            </p>
+                            <div class="center card-action">
+                                <a class="waves-effect waves-light btn" href="#">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m2"></div>
+            </div>
+        </div>
     </div>
     <div id="nav-pager:design-studio-page" hidden>
         <ul id="design-studio-pager" class="pager-container center pagination">
@@ -80,15 +152,13 @@
         <div id="design-studio-pager:layout-page" class="page">
             <div class="input-field col s12">
                 <select>
-                  <option value="" disabled selected>Select a template</option>
-                  <optgroup label="Your Saved Templates">
-                    <option value="1">My Design</option>
+                  <optgroup label="Your Saved designs">
+                    <option value="1">New design</option>
                   </optgroup>
                   <optgroup label="Active Group Buys">
                     <option value="1">someone's cool design</option>
                   </optgroup>
                   <optgroup label="Community Templates">
-                    <option value="1">Blank Design</option>
                     <option value="2">Ergodox</option>
                     <option value="3">ISO 60%</option>
                     <option value="3">ANSI 104</option>
@@ -96,7 +166,6 @@
                 </select>
                 <label>Template</label>
             </div>
-
             <label for="layout-file-upload" class="waves-effect waves-light btn-large">
                 <i class="material-icons right">file_upload</i>upload JSON file
             </label>
@@ -115,8 +184,14 @@
             accessories
         </div>
         <div id="design-studio-pager:checkout-page" class="page" hidden>
-            <button id="creep-export" class="button primary-button">export creepboards json file</button>
+            checkout
         </div>
+    </div>
+    <div id="nav-pager:about-page" hidden>
+        about page
+    </div>
+    <div id="nav-pager:documentation-page" hidden>
+        documentation page
     </div>
 </body>
 </html>

@@ -199,8 +199,6 @@ fetch('default_layout.json')
     .then(response => response.text())
     .then(text => kb.load_from_json(JSON.parse(text)));
 
-document.getElementById("creep-export").addEventListener('click', kb.export_to_json);
-
 
 const layout_file_upload = document.getElementById("layout-file-upload");
 layout_file_upload.addEventListener("change", process_layout_file, false);
@@ -219,20 +217,3 @@ function file_to_json_object(file){
     }
     fr.readAsText(file);
 }
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    const options = [
-		{ name : 'start 1',  value : '1'},
-		{ name : 'start 2',  value : '2'},
-		{ name : 'end 3 ',  value : '3 '},
-		{ name : 'end 4 ', value : '4 '},
-		{ name : 'end 5 ',  value : '5'},
-		{ name : 'go 6 ',  value : '6'}
-		]
-    var instances = M.FormSelect.init(elems, options);
-  });
-
-
-        
