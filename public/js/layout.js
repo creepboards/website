@@ -103,15 +103,27 @@ class KeyboardLayout{
     }
 
     render_html(){
+        const extremes = this.components.map(c => c.extremes());
+        console.log(extremes)
+        const min_x = Math.min( ...extremes.map(e => e.min_x));
+        const max_x = Math.max( ...extremes.map(e => e.max_x));
+        // const min_y = Math.min( ...extremes.map(e => e.min_y));
+        // const max_y = Math.max( ...extremes.map(e => e.max_y));
+        
+        const w = max_x - min_x;
+        // const h = max_y - min_y;
+        const win_w = window.innerWidth;
+        const scale = .9 * win_w / w;
+
+    
+
         var html = ''
         for(const c in this.components){
-            html += this.components[c].render_html()
+            html += this.components[c].render_html(scale)
         }
-        Array.from(document.getElementsByClassName("layout-preview")).forEach(
-            function (element){
-                element.innerHTML = html;
-            }
-        )
+        var layout_element = document.getElementById("layout-preview");
+        layout_element.innerHTML = html;
+        
     }
 
 }
@@ -136,7 +148,7 @@ class Component{
 
     }
 
-    render_html(){
+    render_html(scale){
         console.log("no render function for this component");
         return ("no render function for this component");
     }
@@ -144,8 +156,8 @@ class Component{
 
 class Switch extends Component{
 
-    render_html(){
-        var u = 50;
+    render_html(scale){
+        var u = scale;
         var html = `
             <div class="switch-body" style="left: ${u*this.rx}px; top: ${u*this.ry}px; width: ${u*this.w-1.5}px; height: ${u*this.h-1.5}px;transform-origin: top left; transform: rotate(${this.r}deg) translate(${u*this.x}px,${u*this.y}px);">
                 <div style="left: 3px; top: 3px; width: ${u*this.w-10}px; height: ${u*this.h-15}px;" class="switch-surface">
@@ -169,6 +181,41 @@ class Switch extends Component{
         this.name = name;
     }
 
+    corner_locations(){
+        var corners = [
+            [this.x,this.y], //top left
+            [this.x+this.w,this.y], //top right
+            [this.x+this.w,this.y+this.h], // bottom right
+            [this.x,this.y+this.h], // bottom left
+        ];
+
+        if (this.r != 0){
+            for(var i in corners){
+                var x = corners[i][0];
+                var y = corners[i][1];
+                var off_x = x - this.rx;
+                var off_y = y - this.ry;
+                var r = this.r * Math.PI/180;
+                corners[i][0]=off_x * Math.cos(r) - off_y * Math.sin(r);
+                corners[i][1]=off_y * Math.cos(r) + off_x * Math.sin(r);
+                corners[i][0]+= this.rx;
+                corners[i][1]+= this.ry;
+            }
+        }
+        console.log(corners);
+        return corners
+    }
+
+    extremes(){
+        const c = this.corner_locations()
+        const extreems = {
+            'max_x':Math.max(c[0][0], c[1][0],c[2][0],c[3][0]),
+            'min_x':Math.min(c[0][0], c[1][0],c[2][0],c[3][0]),
+            'max_y':Math.max(c[0][1], c[1][1],c[2][1],c[3][1]),
+            'min_y':Math.min(c[0][1], c[1][1],c[2][1],c[3][1])
+        }
+        return extreems;
+    }
 }
 
 class Led extends Component{
