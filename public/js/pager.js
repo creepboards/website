@@ -1,20 +1,45 @@
 // for each element with pager-container class
 Array.from(document.getElementsByClassName("pager-container")).forEach(
     function (container){
-        Array.from(container.children).forEach(
+        Array.from(container.children).forEach( 
             function (button){
-                // attach listener
+                // attach listener to each selector
                 button.addEventListener("click", function(){
-                    select_button(button);
-                    hide_all_pages(container);
-                    display_page(container, button.value);
+                    // get the name of the pager without any trailing digits
+                    var pager_name = button.id.replace(/^.*:/, "").replace(/\d+$/, "");
+                    var page_name = button.id.replace(/:.*$/, "");
+    
+                    // find all elements(pages) with an id starting with pager name + :
+                    var all_pages = document.querySelectorAll(`[id^="${pager_name}:"]`);
+                    var all_pagers = document.querySelectorAll(`[id*=":${pager_name}"]`);
+                
+                    // hide all but the selected page
+                    const target_page = `${pager_name}:${page_name}`;
+                    [].forEach.call(all_pages, function(page) {
+                        if (page.id == target_page){
+                            page.hidden = false;
+                        } else {
+                            page.hidden = true;
+                        }
+                    });
+                    
+                    // activate(highlight) the correct pager
+                    const target_pager = `${page_name}:${pager_name}`;
+                    [].forEach.call(all_pagers, function(pager) {
+                        pager.id.replace(/\d+$/, "");
+                        if (pager.id.replace(/\d+$/, "") == target_pager){
+                            pager.classList.add("active");
+                        } else {
+                            pager.classList.remove("active");
+                        }
+                    });
                 });
             }
         )
     }
 );
 
-let getSiblings = function (e) {
+let get_siblings = function (e) {
     // for collecting siblings
     let siblings = []; 
     // if no parent, return no sibling
@@ -33,29 +58,3 @@ let getSiblings = function (e) {
     }
     return siblings;
 };
-
-function select_button(button){
-    var siblings = getSiblings(button);
-    for(var i in siblings){
-        siblings[i].classList.remove("primary-button");
-        siblings[i].classList.add("secondary-button");
-    }
-    button.classList.remove("secondary-button");
-    button.classList.add("primary-button");
-}
-
-function hide_all_pages(container) {
-    var siblings = getSiblings(container);
-    for(var i in siblings){
-        siblings[i].hidden = true;
-    }
-}
-
-function display_page(container, id){
-    var siblings = getSiblings(container);
-    for(var i in siblings){
-        if (siblings[i].id == id){
-            siblings[i].hidden = false;
-        }
-    }
-}

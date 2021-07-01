@@ -199,10 +199,6 @@ fetch('default_layout.json')
     .then(response => response.text())
     .then(text => kb.load_from_json(JSON.parse(text)));
 
-// document.getElementById('creep-export').addEventListener('click', kb.export_creep);
-
-document.querySelector("#summary-page > button").addEventListener('click', kb.export_to_json);
-
 
 const layout_file_upload = document.getElementById("layout-file-upload");
 layout_file_upload.addEventListener("change", process_layout_file, false);

@@ -4,88 +4,213 @@
     <title>Creepboards Design Studio</title>
     <link rel="stylesheet" href="css/creepboards.css">
 
-    <!-- FIREBASE things -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <!-- FIREBASE SETUP -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
-    <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-        apiKey: "AIzaSyAJ80tTH5ya9kUo0jpq5laxCJTyKbPZb0w",
-        authDomain: "creepboards.firebaseapp.com",
-        databaseURL: "https://creepboards-default-rtdb.firebaseio.com",
-        projectId: "creepboards",
-        storageBucket: "creepboards.appspot.com",
-        messagingSenderId: "895884556050",
-        appId: "1:895884556050:web:60a77c0eca20af920fa5cb",
-        measurementId: "G-EBERKXW5J6"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    </script>
+        <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJ80tTH5ya9kUo0jpq5laxCJTyKbPZb0w",
+            authDomain: "creepboards.firebaseapp.com",
+            databaseURL: "https://creepboards-default-rtdb.firebaseio.com",
+            projectId: "creepboards",
+            storageBucket: "creepboards.appspot.com",
+            messagingSenderId: "895884556050",
+            appId: "1:895884556050:web:60a77c0eca20af920fa5cb",
+            measurementId: "G-EBERKXW5J6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
+    <!-- END FIREBASE SETUP -->
+    <!-- MATERIALIZE CSS SETUP https://materializecss.com/ -->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- END MATERIALIZE CSS SETUP -->
+    
+    <!-- Material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/pager.js"></script>
     <script type="module" src="js/layout.js" defer></script>
+    <script type="module" src="js/materialize.js" defer></script>
 </head>
 
 <body>
-    <div class="layout">
-        <div class="header">
-            <img class="logo">
-            <div class="navigation">
-                <a class="navigation-link" href="">Home</a>
-                <a class="navigation-link" href="">Design Studio</a>
-                <a class="navigation-link" href="">About</a>
-                <a class="navigation-link" href="">Something else</a>
-            </div>
-            <button id="login-button" class="button primary-button">Login / Signup</button>
-            <button id="logout-button" class="button primary-button" hidden>logout</button>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="center brand-logo">Creepboards</a>
+            <a href="#" data-target="side-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="pager-container left hide-on-med-and-down">
+                <li id="home-page:nav-pager" class="active"><a>Home</a></li>
+                <li id="design-studio-page:nav-pager"><a>Design Studio</a></li>
+                <li id="about-page:nav-pager"><a>About</a></li>
+                <li id="documentation-page:nav-pager"><a>Documentation</a></li>
+            </ul>
+            <ul class="right">
+                <li id="login-button"><a class="waves-effect waves-light btn">Login / Signup</a></li>
+                <li id="logout-button" hidden><a class="waves-effect waves-light btn">Logout</a></li>
+            </ul>                
         </div>
-        <div id='design-studio-page' class="content">
-            <div class="pager-container">
-                <button class="button primary-button" value='layout-page'>layout</button>
-                <button class="button secondary-button" value='case-page'>case</button>
-                <button class="button secondary-button" value='assembly-page'>assembly</button>
-                <button class="button secondary-button" value='accessories-page'>accessories</button>
-                <button class="button secondary-button" value='summary-page'>summary</button>
+    </nav>
+
+    <ul id="side-nav" class="sidenav">
+        <li id="home-page" class="center"><h4>Creepboards</h4></li>    
+        <div class="collection pager-container">
+            <a id="home-page:nav-pager2" class="collection-item active">Home</a>
+            <a id="design-studio-page:nav-pager2" class="collection-item">Design Studio</a>
+            <a id="about-page:nav-pager2" class="collection-item">About</a>
+            <a id="documentation-page:nav-pager2" class="collection-item">Documentation</a>
+        </div>
+        <div class="divider"></div>
+        <div class="container">
+            <li id="login-button2"><a class="waves-effect waves-light btn">Login / Signup</a></li>
+            <li id="logout-button2" hidden><a class="waves-effect waves-light btn">Logout</a></li>
+        </div>            
+    </ul>
+
+    <div id="nav-pager:home-page">
+        <div class="container">
+            <div class="center">
+                <h4><i>Keyboards with a mind of their own</i></h4>
+                <p class="flow-text">We make affordable, bespoke, one-of-a-kind mechanical keyboards; packed with features. We aim to dramatically expand what your keyboard can be and what it can do.</p>
+                <div class="pager-container">
+                    <a id="design-studio-page:nav-pager3" class="waves-effect waves-light btn-large">
+                        Start Your Design<i class="material-icons right">draw</i>
+                    </a>
+                </div>                    
             </div>
-            <div id="layout-page" class="page">
-                Pick a template to start your layout
-                <div class="layout-preview">your preview here</div>
-                <div class="template-selector">
-                    <label for="layout-file-upload" class="button secondary-button">
-                        Upload a layout JSON file
-                    </label>
-                    <input class="hidden" type="file" id="layout-file-upload">
-                    <button class="button secondary-button">Blank design</button>
-                    <button class="button secondary-button">Ergodox</button>
-                    <button class="button secondary-button">ANSI 104</button>
-                    <button class="button secondary-button">12-key macropad</button>
-                    <button class="button secondary-button">ISO 60%</button>
+            <h2>features</h2>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Your Unique Layout<i class="right material-icons">keyboard</i></span>
+                            <p>Arrange up to 200 reprogrammable keys in any pattern you like. Optomize your layout for your workflow weather that's editing video, streaming your favorite game, or just how you like to type.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Zero-install reprogramming<i class="right material-icons">phonelink_setup</i></span>
+                            <p>Use any WiFi enabled device to securely reprogram your keyboard without installing or flashing anything. Simply connect to your keyboard's wifi and open a browser.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">WiFi<i class="right material-icons">wifi</i></span>
+                            <p>Use WiFi connectivity to reconfigure your keyboard from your phone, download firmware updates, trigger a home automation, access your favorite web API....and anything else you can imagine!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">BlueTooth<i class="right material-icons">bluetooth</i></span>
+                            <p>Connect to a second device via BlueTooth. You can even switch between the devices with the press of a key once paired.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Addressable RGB<i class="right material-icons">light_mode</i></span>
+                            <p>Make your board stand out with dazzling full-color lighting. Customize each individual light to change color in response to your keypresses, API calls, or your set pattern. Don't want to bother getting lost in the details? Use one of our ready made patterns.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Rotary Encoders<i class="right material-icons">flip_camera_android</i></span>
+                            <p>Weather you want a rotary encoder with detents, or without, or several of both; we've got you covered. All encoders have a push switch and have capacitive touch capabilities. 
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="case-page" class="page" hidden>
-                case
-            </div>
-            <div id="assembly-page" class="page" hidden>
-                assembly
-            </div>
-            <div id="accessories-page" class="page" hidden>
-                accessories
-            </div>
-            <div id="summary-page" class="page" hidden>
-                <button id="creep-export" class="button primary-button">export creepboards json file</button>
+            <div class="row">
+                <div class="col s12 m2"></div>
+                <div class="col s12 m8">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title"><b>Did we miss something?<i class="right material-icons">feedback</i></b></span>
+                            <p>We're always adding new capabilities to our keyboard's hardware and software. Let us know what features you want in your keyboard.
+                            </p>
+                            <div class="center card-action">
+                                <a class="waves-effect waves-light btn" href="#">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m2"></div>
             </div>
         </div>
-        <div class="footer"></div>
+    </div>
+    <div id="nav-pager:design-studio-page" hidden>
+        <ul id="design-studio-pager" class="pager-container center pagination">
+            <li id="layout-page:design-studio-pager" class="active"><a href="#!">layout</a></li>
+            <li id="case-page:design-studio-pager" class="waves-effect"><a href="#!">case</a></li>
+            <li id="assembly-page:design-studio-pager" class="waves-effect"><a href="#!">assembly</a></li>
+            <li id="accessories-page:design-studio-pager" class="waves-effect"><a href="#!">accessories</a></li>
+            <li id="checkout-page:design-studio-pager" class="waves-effect"><a href="#!">checkout</a></li>
+        </ul>
+        <div id="design-studio-pager:layout-page" class="page">
+            <div class="input-field col s12">
+                <select>
+                  <optgroup label="Your Saved designs">
+                    <option value="1">New design</option>
+                  </optgroup>
+                  <optgroup label="Active Group Buys">
+                    <option value="1">someone's cool design</option>
+                  </optgroup>
+                  <optgroup label="Community Templates">
+                    <option value="2">Ergodox</option>
+                    <option value="3">ISO 60%</option>
+                    <option value="3">ANSI 104</option>
+                  </optgroup>
+                </select>
+                <label>Template</label>
+            </div>
+            <label for="layout-file-upload" class="waves-effect waves-light btn-large">
+                <i class="material-icons right">file_upload</i>upload JSON file
+            </label>
+            <input type="file" id="layout-file-upload" hidden>
+              
+            <div class="layout-preview">your preview here</div>
+            
+        </div>
+        <div id="design-studio-pager:case-page" class="page" hidden>
+            case
+        </div>
+        <div id="design-studio-pager:assembly-page" class="page" hidden>
+            assembly
+        </div>
+        <div id="design-studio-pager:accessories-page" class="page" hidden>
+            accessories
+        </div>
+        <div id="design-studio-pager:checkout-page" class="page" hidden>
+            checkout
+        </div>
+    </div>
+    <div id="nav-pager:about-page" hidden>
+        about page
+    </div>
+    <div id="nav-pager:documentation-page" hidden>
+        documentation page
     </div>
 </body>
 </html>
