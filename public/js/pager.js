@@ -5,27 +5,34 @@ Array.from(document.getElementsByClassName("pager-container")).forEach(
             function (button){
                 // attach listener to each selector
                 button.addEventListener("click", function(){
-                    // get all elements with the prefix
-                    var page_prefix = button.parentNode.id.replace(/\d+$/, "")+":"
-                    console.log(page_prefix);
-                    var all_pages = document.querySelectorAll(`[id^="${page_prefix}"]`);
-                    
+                    // get the name of the pager without any trailing digits
+                    var pager_name = button.id.replace(/^.*:/, "").replace(/\d+$/, "");
+                    var page_name = button.id.replace(/:.*$/, "");
+    
+                    // find all elements(pages) with an id starting with pager name + :
+                    var all_pages = document.querySelectorAll(`[id^="${pager_name}:"]`);
+                    var all_pagers = document.querySelectorAll(`[id*=":${pager_name}"]`);
+                
                     // hide all but the selected page
+                    const target_page = `${pager_name}:${page_name}`;
                     [].forEach.call(all_pages, function(page) {
-                        const target_id = `${page_prefix}${button.id}`
-                        if (page.id == target_id){
+                        if (page.id == target_page){
                             page.hidden = false;
                         } else {
                             page.hidden = true;
                         }
                     });
                     
-                    // activate the correct item
-                    var all_buttons = get_siblings(button)
-                    for(var i in all_buttons){
-                        all_buttons[i].classList.remove("active");
-                    }
-                    button.classList.add("active");
+                    // activate(highlight) the correct pager
+                    const target_pager = `${page_name}:${pager_name}`;
+                    [].forEach.call(all_pagers, function(pager) {
+                        pager.id.replace(/\d+$/, "");
+                        if (pager.id.replace(/\d+$/, "") == target_pager){
+                            pager.classList.add("active");
+                        } else {
+                            pager.classList.remove("active");
+                        }
+                    });
                 });
             }
         )

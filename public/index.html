@@ -53,12 +53,12 @@
     <nav>
         <div class="nav-wrapper">
             <a href="#" class="center brand-logo">Creepboards</a>
-            <a href="#" data-target="nav-pager2" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="#" data-target="side-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-pager" class="pager-container left hide-on-med-and-down">
-                <li id='home-page'><a>Home</a></li>
-                <li id='design-studio-page'><a>Design Studio</a></li>
-                <li id='about-page'><a>About</a></li>
-                <li id='documentation-page'><a>Documentation</a></li>
+                <li id='home-page:nav-pager' class="active"><a>Home</a></li>
+                <li id='design-studio-page:nav-pager'><a>Design Studio</a></li>
+                <li id='about-page:nav-pager'><a>About</a></li>
+                <li id='documentation-page:nav-pager'><a>Documentation</a></li>
             </ul>
             <ul class="right">
                 <li id="login-button"><a class="waves-effect waves-light btn">Login / Signup</a></li>
@@ -67,11 +67,19 @@
         </div>
     </nav>
 
-    <ul class="sidenav pager-container" id="nav-pager2">
-        <li id='home-page'><a>Home</a></li>
-        <li id='design-studio-page'><a>Design Studio</a></li>
-        <li id='about-page'><a>About</a></li>
-        <li id='documentation-page'><a>Documentation</a></li>
+    <ul id="side-nav" class="sidenav">
+        <li id='home-page' class="center"><h4>Creepboards</h4></li>    
+        <div id="nav-pager2" class="collection pager-container">
+            <a id='home-page:nav-pager2' class="collection-item active">Home</a>
+            <a id='design-studio-page:nav-pager2' class="collection-item">Design Studio</a>
+            <a id='about-page:nav-pager2' class="collection-item">About</a>
+            <a id='documentation-page:nav-pager2' class="collection-item">Documentation</a>
+        </div>
+        <div class="divider"></div>
+        <div class="container">
+            <li id="login-button"><a class="waves-effect waves-light btn">Login / Signup</a></li>
+            <li id="logout-button" hidden><a class="waves-effect waves-light btn">Logout</a></li>
+        </div>            
     </ul>
 
     <div id="nav-pager:home-page">
