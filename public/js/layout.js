@@ -104,20 +104,14 @@ class KeyboardLayout{
 
     render_html(){
         const extremes = this.components.map(c => c.extremes());
-        console.log(extremes)
         const min_x = Math.min( ...extremes.map(e => e.min_x));
         const max_x = Math.max( ...extremes.map(e => e.max_x));
         //const min_y = Math.min( ...extremes.map(e => e.min_y));
         const max_y = Math.max( ...extremes.map(e => e.max_y));
         
-        
-        
         const w = max_x - min_x;
         const win_w = window.innerWidth;
         const scale = win_w / w;
-        console.log(win_w, w)
-
-    
 
         var html = ''
         for(const c in this.components){
@@ -203,8 +197,6 @@ class Switch extends Component{
                 corners[i][1]+= this.ry;
             }
         }
-        console.log(corners);
-        console.log(this.x)
         return corners
     }
 
