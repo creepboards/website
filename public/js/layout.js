@@ -107,13 +107,15 @@ class KeyboardLayout{
         console.log(extremes)
         const min_x = Math.min( ...extremes.map(e => e.min_x));
         const max_x = Math.max( ...extremes.map(e => e.max_x));
-        // const min_y = Math.min( ...extremes.map(e => e.min_y));
-        // const max_y = Math.max( ...extremes.map(e => e.max_y));
+        //const min_y = Math.min( ...extremes.map(e => e.min_y));
+        const max_y = Math.max( ...extremes.map(e => e.max_y));
+        
+        
         
         const w = max_x - min_x;
-        // const h = max_y - min_y;
         const win_w = window.innerWidth;
-        const scale = .9 * win_w / w;
+        const scale = win_w / w;
+        console.log(win_w, w)
 
     
 
@@ -123,7 +125,8 @@ class KeyboardLayout{
         }
         var layout_element = document.getElementById("layout-preview");
         layout_element.innerHTML = html;
-        
+        layout_element.style.margin = (win_w - scale*w)/2;
+        layout_element.style.height = max_y * scale;
     }
 
 }
@@ -193,16 +196,15 @@ class Switch extends Component{
             for(var i in corners){
                 var x = corners[i][0];
                 var y = corners[i][1];
-                var off_x = x - this.rx;
-                var off_y = y - this.ry;
                 var r = this.r * Math.PI/180;
-                corners[i][0]=off_x * Math.cos(r) - off_y * Math.sin(r);
-                corners[i][1]=off_y * Math.cos(r) + off_x * Math.sin(r);
+                corners[i][0]=x * Math.cos(r) - y * Math.sin(r);
+                corners[i][1]=y * Math.cos(r) + x * Math.sin(r);
                 corners[i][0]+= this.rx;
                 corners[i][1]+= this.ry;
             }
         }
         console.log(corners);
+        console.log(this.x)
         return corners
     }
 
