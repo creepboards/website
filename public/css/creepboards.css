@@ -74,10 +74,9 @@
 
 .layout-preview{
     position: relative;
-    border: 1px solid #000000;
-    width: auto;
-    height: 500px;
-    overflow: auto;
+    width: 100%;
+    height: auto;
+    overflow: visable;
 }
 
 .switch-body{
