@@ -93,7 +93,7 @@
 }
 
 .switch-body .selected{
-    border: px solid var(--bright-5);
+    border: 1px solid var(--bright-5);
     z-index: 5;
 }
 
