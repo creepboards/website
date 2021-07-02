@@ -165,10 +165,12 @@ class Switch extends Component{
         var surface_h = (this.h - taper)* u+ border_w;
         var surface_off = (body_w - surface_w)/2;
         
+        var font_size = surface_h / 4;
+
         var html = `
             <div class="switch-body" style="left: ${u*this.rx}px; top: ${u*this.ry}px; width: ${u*(this.w-.008)}px; height: ${u*(this.h-.008)}px;transform-origin: top left; transform: rotate(${this.r}deg) translate(${u*this.x}px,${u*this.y}px);">
                 <div style="left: ${surface_off}px; top: ${surface_off/2}px; width: ${surface_w}px; height: ${surface_h}px;" class="switch-surface">
-                    <div class="switch-name">  
+                    <div class="switch-name" style="font-size:${font_size}">  
                         ${this.name}
                     </div> 
                 </div> 
