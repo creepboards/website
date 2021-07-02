@@ -109,15 +109,17 @@ class KeyboardLayout{
         //const min_y = Math.min( ...extremes.map(e => e.min_y));
         const max_y = Math.max( ...extremes.map(e => e.max_y));
         
-        const w = max_x - min_x;
-        const win_w = window.innerWidth;
-        const scale = win_w / w;
+        var layout_element = document.getElementById("layout-preview");
 
+        const w = max_x - min_x;
+        const win_w = layout_element.offsetWidth;
+        const scale = win_w / w;
+        // const scale = 50;
         var html = ''
         for(const c in this.components){
             html += this.components[c].render_html(scale)
         }
-        var layout_element = document.getElementById("layout-preview");
+        
         layout_element.innerHTML = html;
         layout_element.style.margin = (win_w - scale*w)/2;
         layout_element.style.height = max_y * scale;
@@ -154,10 +156,18 @@ class Component{
 class Switch extends Component{
 
     render_html(scale){
+        const border_w = 1;
+        const taper = .20;
         var u = scale;
+        var body_w = this.w * u - 2*border_w;
+        var body_h = this.h * u - 2*border_w;
+        var surface_w = (this.w - taper)* u + border_w;
+        var surface_h = (this.h - taper)* u+ border_w;
+        var surface_off = (body_w - surface_w)/2;
+        
         var html = `
-            <div class="switch-body" style="left: ${u*this.rx}px; top: ${u*this.ry}px; width: ${u*this.w-1.5}px; height: ${u*this.h-1.5}px;transform-origin: top left; transform: rotate(${this.r}deg) translate(${u*this.x}px,${u*this.y}px);">
-                <div style="left: 3px; top: 3px; width: ${u*this.w-10}px; height: ${u*this.h-15}px;" class="switch-surface">
+            <div class="switch-body" style="left: ${u*this.rx}px; top: ${u*this.ry}px; width: ${u*(this.w-.008)}px; height: ${u*(this.h-.008)}px;transform-origin: top left; transform: rotate(${this.r}deg) translate(${u*this.x}px,${u*this.y}px);">
+                <div style="left: ${surface_off}px; top: ${surface_off/2}px; width: ${surface_w}px; height: ${surface_h}px;" class="switch-surface">
                     <div class="switch-name">  
                         ${this.name}
                     </div> 
@@ -257,4 +267,8 @@ function file_to_json_object(file){
         kb.load_from_json(JSON.parse(fr.result))
     }
     fr.readAsText(file);
+}
+
+window.onclick = function(event) {
+    kb.render_html();
 }
