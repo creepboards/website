@@ -103,6 +103,9 @@ class KeyboardLayout{
     }
 
     render_html(){
+        if(this.components === undefined){
+            return;
+        }
         const extremes = this.components.map(c => c.extremes());
         const min_x = Math.min( ...extremes.map(e => e.min_x));
         const max_x = Math.max( ...extremes.map(e => e.max_x));
@@ -245,9 +248,9 @@ class Usb extends Component{
 let kb = new KeyboardLayout();
 
 // load and parse default layout
-fetch('default_layout.json')
-    .then(response => response.text())
-    .then(text => kb.load_from_json(JSON.parse(text)));
+// fetch('default_layout.json')
+//     .then(response => response.text())
+//     .then(text => kb.load_from_json(JSON.parse(text)));
 
 
 const layout_file_upload = document.getElementById("layout-file-upload");
