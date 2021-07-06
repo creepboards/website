@@ -254,7 +254,7 @@ let kb = new KeyboardLayout();
 
 
 const layout_file_upload = document.getElementById("layout-file-upload");
-layout_file_upload.addEventListener("change", process_layout_file, false);
+// layout_file_upload.addEventListener("change", process_layout_file, false);
 
 function process_layout_file() {
     var file = document.getElementById("layout-file-upload").files[0];
