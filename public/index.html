@@ -11,7 +11,7 @@
         <!-- TODO: Add SDKs for Firebase products that you want to use
             https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
         <script>
@@ -43,8 +43,9 @@
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/router.js"></script>
+    <script type="module" src="js/firestore.js" defer></script>
+    <script type="module" src="js/auth.js" defer></script>
     <script type="module" src="js/layout.js" defer></script>
     <script type="module" src="js/materialize.js" defer></script>
 </head>
@@ -192,19 +193,11 @@
                 <div id="layout-preview" class="layout-preview">
                     <div class="row">
                         <h2 class="header">Start Your Design</h2>
-                        <ul class="collection with-header col s6">
+                        <ul id="user-designs-collection" class="collection with-header col s6">
                             <li class="collection-header"><h4>Your Saved Designs</h4></li>
-                            <a class="collection-item">Alvin<i class="right material-icons">edit</i></a>
-                            <a class="collection-item">Alvin<i class="right material-icons">edit</i></a>
-                            <a class="collection-item">Alvin<i class="right material-icons">edit</i></a>
-                            <a class="collection-item">Alvin<i class="right material-icons">edit</i></a>
                         </ul>
-                        <ul class="collection with-header col s6">
+                        <ul id="templates-collection" class="collection with-header col s6">
                             <li class="collection-header"><h4>Templates</h4></li>
-                            <a class="collection-item">Alvin<i class="right material-icons">edit</i></a>
-                            <a class="collection-item">Alvin<i class="right material-icons">edit</i></a>
-                            <a class="collection-item">Alvin<i class="right material-icons">edit</i></a>
-                            <a class="collection-item">Alvin<i class="right material-icons">edit</i></a>
                         </ul>
                         
                         <!-- <ul class="collapsible">
