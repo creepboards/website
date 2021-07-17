@@ -1,54 +1,76 @@
-const db = firebase.firestore();
+export const db = firebase.firestore();
 
-let design_templates = db.collection('design-templates');
+// export function load_design(doc){
+//     let design_json = doc.data();
+//     design_json['id'] = doc.id;
+//     localStorage.setItem("design-json", JSON.stringify(design_json));
+//     document.getElementById('design-router.layout').click();
+// }
 
-// design_templates.get().then(
-//     (querySnapshot) => {
-//         let templates_collection = document.getElementById('templates-collection')
-//         querySnapshot.forEach((doc) => {
-//             console.log(doc.id, " => ", doc.data());
-//             templates_collection.innerHTML += `<a class="collection-item">${doc.data().name}<i class="right material-icons">edit</i></a>`
-//         });
-//     });
+export function create_design(){
+    // todo
+}
 
+export function save_design(){
+    // todo
+}
 
-function get_design_templates(){
+export function delete_design(){
+    // todo
+}
+
+export function render_design_button(doc, kb){
+    let design = doc.data();
+    console.log(design);
+    let button = document.createElement('a');
+    button.classList.add("collection-item");
+    button.innerHTML = `${design.name}<i class="right material-icons">edit</i>`;
+    button.addEventListener('click', 
+        function(){
+            kb.load_from_string(design.layout)
+            document.getElementById('design-router.layout').click();
+        }  
+    );
+    return button
+}
+
+export function get_design_templates(kb){
     let designs = db.collection('design-templates');
     designs.get().then(
         (querySnapshot) => {
-            querySnapshot.forEach( (doc) =>
-                render_design_button(doc.data(), 'templates-collection')
+            querySnapshot.forEach( 
+                function(doc){
+                    let button = render_design_button(doc, kb);
+                    document.getElementById('templates-collection').appendChild(button);
+                }  
             );
         }
     );
 }
 
-function get_user_designs(user){
+export function get_user_designs(user, kb){
     // no designs saved yet msg?
     console.log(`getting user designs for uid:${user.uid}`);
-    let designs = db.collection(user.uid);
+    let designs = db.collection('user-designs').where("owner", "==", user.uid);
     designs.get().then(
         (querySnapshot) => {
-            querySnapshot.forEach( (doc) =>
-                render_design_button(doc.data(), 'user-designs-collection')
+            querySnapshot.forEach( 
+                function(doc){
+                    let button = render_design_button(doc, kb);
+                    document.getElementById('user-designs-collection').appendChild(button);
+                }
             );
         }
     );
 }
 
 
-function render_design_button(design){
-    console.log(design);
-    let html = `<a class="collection-item">${design.name}<i class="right material-icons">edit</i></a>`;
-    document.getElementById('templates-collection').innerHTML += html;
-}
+// get_design_templates();
 
-
-get_design_templates();
-
-const auth = firebase.auth();
-auth.onAuthStateChanged(user => {
-    if (user) {
-        get_user_designs(user);
-    }
-});
+// const auth = firebase.auth();
+// auth.onAuthStateChanged(user => {
+//     document.getElementById('user-designs-collection').innerHTML = '';
+//     if (user) {
+//         get_user_designs(user);
+//     }
+// });
