@@ -11,7 +11,7 @@
         <!-- TODO: Add SDKs for Firebase products that you want to use
             https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
         <script>
@@ -43,10 +43,13 @@
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/router.js"></script>
-    <script type="module" src="js/layout.js" defer></script>
-    <script type="module" src="js/materialize.js" defer></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/materialize.js"></script>
+    <script type="module" src="js/main.js"></script>    
+    <!-- <script type="module" src="js/layout.js"></script> -->
+    <!-- <script type="module" src="js/firestore.js"></script> -->
+    <!-- <script type="module" src="js/design-studio.js"></script> -->
 </head>
 
 <body>
@@ -160,38 +163,28 @@
     </div>
     <div id="design" class="page" hidden>
         <ul class="router-container center pagination">
-            <li id="design-router.layout" class="route waves-effect"><a>layout</a></li>
-            <li id="design-router.case" class="route waves-effect"><a>case</a></li>
-            <li id="design-router.assembly" class="route waves-effect"><a>assembly</a></li>
-            <li id="design-router.accessories" class="route waves-effect"><a>accessories</a></li>
-            <li id="design-router.checkout" class="route waves-effect"><a>checkout</a></li>
+            <li id="design-router.open" class="route waves-effect"><a>Open</a></li>
+            <li id="design-router.layout" class="route waves-effect"><a>Layout</a></li>
+            <li id="design-router.case" class="route waves-effect"><a>Case</a></li>
+            <li id="design-router.assembly" class="route waves-effect"><a>Assembly</a></li>
+            <li id="design-router.accessories" class="route waves-effect"><a>Accessories</a></li>
+            <li id="design-router.checkout" class="route waves-effect"><a>Checkout</a></li>
         </ul>
-        <div id="design.layout" class="page">
-            <div class="input-field col s12">
-                <select>
-                  <optgroup label="Your Saved designs">
-                    <option value="1">New design</option>
-                  </optgroup>
-                  <optgroup label="Active Group Buys">
-                    <option value="1">someone's cool design</option>
-                  </optgroup>
-                  <optgroup label="Community Templates">
-                    <option value="2">Ergodox</option>
-                    <option value="3">ISO 60%</option>
-                    <option value="3">ANSI 104</option>
-                  </optgroup>
-                </select>
-                <label>Template</label>
-            </div>
-            <label for="layout-file-upload" class="waves-effect waves-light btn-large">
-                <i class="material-icons right">file_upload</i>upload JSON file
-            </label>
-            <input type="file" id="layout-file-upload" hidden>
-              
+
+        <div id="design.open" class="page">           
             <div class="container">
-                <div id="layout-preview" class="layout-preview">your preview here</div>
+                <div class="col">
+                    <h2 class="header">Your Saved Designs</h2>
+                    <ul id="user-designs-collection" class="collection with-header">
+                    </ul>
+                    <h2 class="header">Start From Template</h2>
+                    <ul id="templates-collection" class="collection with-header">
+                    </ul>
+                </div>
             </div>
-            
+        </div>
+        <div id="design.layout" class="page">    
+            <div id="layout-preview" class="layout-preview"></div>
         </div>
         <div id="design.case" class="page" hidden>
             case

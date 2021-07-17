@@ -1,16 +1,17 @@
 const buttons = { //1st entry defines click through; others define "active" pages and can be RE
     'top-nav-router.home':'/',
-    'top-nav-router.design':'/design/layout',
+    'top-nav-router.design':'/design/open',
     'top-nav-router.about':'/about',
     'top-nav-router.documentation':'/documentation',
     
     'side-nav-router.home':'/',
-    'side-nav-router.design':'/design/layout',
+    'side-nav-router.design':'/design.open',
     'side-nav-router.about':'/about',
     'side-nav-router.documentation':'/documentation',
 
-    'button.start-your-design':'/design/layout',
+    'button.start-your-design':'/design/open',
 
+    'design-router.open':'/design/open',
     'design-router.layout':'/design/layout',
     'design-router.case':'/design/case',
     'design-router.assembly':'/design/assembly',
@@ -23,6 +24,11 @@ const paths = {
         'd':['home'],
         'a':['top-nav-router.home', 'side-nav-router.home'],
         't':'Home'
+    },
+    '/design/open':{
+        'd':['design', 'design.open'],
+        'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.open'],
+        't':'Design - Open A Design'
     },
     '/design/layout':{
         'd':['design', 'design.layout'],

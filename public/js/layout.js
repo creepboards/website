@@ -1,4 +1,4 @@
-class kleCursor{
+export class kleCursor{
     constructor(){
         this.state = {
             'x': 0,
@@ -43,7 +43,7 @@ class kleCursor{
 }
 
 // layout class
-class KeyboardLayout{
+export class KeyboardLayout{
     
     download(data, filename, type) {
         var file = new Blob([data], {type: type});
@@ -63,15 +63,23 @@ class KeyboardLayout{
         }
     }
 
-    load_from_json(data){
+    load_from_string(string){
+        console.log({string});
+        let parsed_json = JSON.parse(string);
+        console.log({parsed_json});
+        this.load_from_json(parsed_json);
+    }
+
+    load_from_json(layout){
+        console.log({layout});
         const c = new kleCursor()
         this.components = [];
-        for(const row in data){
-            for(const el in data[row]){
-                if (typeof data[row][el] == "string"){
-                    this.components.push(c.getKey(c, data[row][el]))
+        for(const row in layout){
+            for(const el in layout[row]){
+                if (typeof layout[row][el] == "string"){
+                    this.components.push(c.getKey(c, layout[row][el]))
                 } else {
-                    c.update(c, data[row][el])
+                    c.update(c, layout[row][el])
                 }
             }
             c.newRow(c)
@@ -103,6 +111,9 @@ class KeyboardLayout{
     }
 
     render_html(){
+        if(this.components === undefined){
+            return;
+        }
         const extremes = this.components.map(c => c.extremes());
         const min_x = Math.min( ...extremes.map(e => e.min_x));
         const max_x = Math.max( ...extremes.map(e => e.max_x));
@@ -126,7 +137,7 @@ class KeyboardLayout{
 
 // component class children:(switch, led, hole, encoder, cpu, usb-port)
 
-class Component{
+export class Component{
     constructor(){
         this.x = 0;
         this.y = 0;
@@ -150,7 +161,7 @@ class Component{
     }
 }
 
-class Switch extends Component{
+export class Switch extends Component{
 
     render_html(scale){
         const border_w = 1;
@@ -221,57 +232,37 @@ class Switch extends Component{
     }
 }
 
-class Led extends Component{
+export class Led extends Component{
     
 }
 
-class Hole extends Component{
+export class Hole extends Component{
     
 }
 
-class Encoder extends Component{
+export class Encoder extends Component{
     
 }
 
-class Cpu extends Component{
+export class Cpu extends Component{
     
 }
 
-class Usb extends Component{
+export class Usb extends Component{
     
 }
 
-// define main layout object
-let kb = new KeyboardLayout();
-
-// load and parse default layout
-fetch('default_layout.json')
-    .then(response => response.text())
-    .then(text => kb.load_from_json(JSON.parse(text)));
-
-
-const layout_file_upload = document.getElementById("layout-file-upload");
-layout_file_upload.addEventListener("change", process_layout_file, false);
-
-function process_layout_file() {
+export function process_layout_file() {
     var file = document.getElementById("layout-file-upload").files[0];
     console.log(file);
     file_to_json_object(file)
 }
 
 // take json file and parse into a json object which goes into layout
-function file_to_json_object(file){
+export function file_to_json_object(file){
     var fr = new FileReader()
     fr.onload = function(){
         kb.load_from_json(JSON.parse(fr.result))
     }
     fr.readAsText(file);
-}
-
-window.onclick = function(event) {
-    kb.render_html();
-}
-
-window.onresize = function(event) {
-    kb.render_html();
 }

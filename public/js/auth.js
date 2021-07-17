@@ -1,4 +1,4 @@
-///// User Authentication /////
+// User Authentication
 
 const auth = firebase.auth();
 
@@ -9,7 +9,7 @@ const login2 = document.getElementById('login-button2');
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
-/// Sign in event handlers
+// Sign in event handlers
 
 login.onclick = () => auth.signInWithPopup(provider);
 login2.onclick = () => auth.signInWithPopup(provider);
