@@ -131,7 +131,6 @@ export class KeyboardLayout{
         
         layout_element.innerHTML = html;
         layout_element.style.height = `${max_y * scale}px`;
-        console.log(max_y);
     }
 
 }

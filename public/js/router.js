@@ -91,7 +91,7 @@ function render_state(path){
 function navigate_to(path) {
     render_state(path);
     // Finally push state change to the address bar
-    window.history.pushState({path},path,path);
+    window.history.pushState({path},path,path + location.hash);
 }
 window.onload = event => {
     // Add history push() event when boxes are clicked
@@ -105,5 +105,8 @@ window.onload = event => {
 // Listen for PopStateEvent
 // (Back or Forward buttons are clicked)
 window.addEventListener("popstate", event => {
-    render_state(event.state.path)
+    try{
+        render_state(event.state.path);
+    } catch (error){}
+
 });
