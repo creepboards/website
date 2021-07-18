@@ -71,7 +71,6 @@ export class KeyboardLayout{
     }
 
     load_from_json(layout){
-        console.log({layout});
         const c = new kleCursor()
         this.components = [];
         for(const row in layout){
@@ -118,19 +117,21 @@ export class KeyboardLayout{
         const min_x = Math.min( ...extremes.map(e => e.min_x));
         const max_x = Math.max( ...extremes.map(e => e.max_x));
         //const min_y = Math.min( ...extremes.map(e => e.min_y));
-        // const max_y = Math.max( ...extremes.map(e => e.max_y));
+        const max_y = Math.max( ...extremes.map(e => e.max_y));
         
         var layout_element = document.getElementById("layout-preview");
 
         const win_w = layout_element.offsetWidth;
         const scale = win_w / max_x - min_x;
-        // const scale = 50;
+
         var html = ''
         for(const c in this.components){
             html += this.components[c].render_html(scale)
         }
         
         layout_element.innerHTML = html;
+        layout_element.style.height = `${max_y * scale}px`;
+        console.log(max_y);
     }
 
 }
@@ -225,7 +226,7 @@ export class Switch extends Component{
         const extreems = {
             'max_x':Math.max(c[0][0], c[1][0],c[2][0],c[3][0]),
             'min_x':Math.min(c[0][0], c[1][0],c[2][0],c[3][0]),
-            // 'max_y':Math.max(c[0][1], c[1][1],c[2][1],c[3][1]),
+            'max_y':Math.max(c[0][1], c[1][1],c[2][1],c[3][1]),
             // 'min_y':Math.min(c[0][1], c[1][1],c[2][1],c[3][1])
         }
         return extreems;

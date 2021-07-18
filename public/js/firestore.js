@@ -27,7 +27,9 @@ export function render_design_button(doc, kb){
     button.innerHTML = `${design.name}<i class="right material-icons">edit</i>`;
     button.addEventListener('click', 
         function(){
-            kb.load_from_string(design.layout)
+            console.log({design});
+            kb.load_from_string(design.layout);
+            document.getElementById('design-name').value = design.name;
             document.getElementById('design-router.layout').click();
         }  
     );

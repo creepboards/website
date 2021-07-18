@@ -5,7 +5,7 @@ const buttons = { //1st entry defines click through; others define "active" page
     'top-nav-router.documentation':'/documentation',
     
     'side-nav-router.home':'/',
-    'side-nav-router.design':'/design.open',
+    'side-nav-router.design':'/design/open',
     'side-nav-router.about':'/about',
     'side-nav-router.documentation':'/documentation',
 

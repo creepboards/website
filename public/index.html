@@ -1,8 +1,10 @@
 <html>
 
 <head>
-    <title>Creepboards Design Studio</title>
-    <link rel="stylesheet" href="css/creepboards.css">
+    <!-- turn off chaching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
     <!-- FIREBASE SETUP -->
         <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -43,13 +45,14 @@
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script type="module" src="js/router.js"></script>
-    <script type="module" src="js/auth.js"></script>
-    <script type="module" src="js/materialize.js"></script>
-    <script type="module" src="js/main.js"></script>    
-    <!-- <script type="module" src="js/layout.js"></script> -->
-    <!-- <script type="module" src="js/firestore.js"></script> -->
-    <!-- <script type="module" src="js/design-studio.js"></script> -->
+    <!-- CREEPBOARDS things -->
+    <title>Creepboards Design Studio</title>
+    <link rel="stylesheet" href="/css/creepboards.css">
+
+    <script type="module" src="/js/router.js"></script>
+    <script type="module" src="/js/auth.js"></script>
+    <script type="module" src="/js/materialize.js"></script>
+    <script type="module" src="/js/main.js"></script>    
 </head>
 
 <body>
@@ -175,16 +178,29 @@
             <div class="container">
                 <div class="col">
                     <h2 class="header">Your Saved Designs</h2>
-                    <ul id="user-designs-collection" class="collection with-header">
-                    </ul>
+                    <ul id="user-designs-collection" class="collection with-header"></ul>
                     <h2 class="header">Start From Template</h2>
-                    <ul id="templates-collection" class="collection with-header">
-                    </ul>
+                    <ul id="templates-collection" class="collection with-header"></ul>
                 </div>
             </div>
         </div>
-        <div id="design.layout" class="page">    
+        <div id="design.layout" class="page container">    
             <div id="layout-preview" class="layout-preview"></div>
+            <div class="divider"></div>
+            <ul class="router-container center pagination">
+                <li id="layout-router.meta" class="route waves-effect"><a>Meta</a></li>
+                <li id="layout-router.switches" class="route waves-effect"><a>Switches</a></li>
+                <li id="layout-router.leds" class="route waves-effect"><a>Leds</a></li>
+            </ul>
+            <div class ="row">
+                <div class="input-field col s3">
+                    <input placeholder="" id="design-name" type="text" class="">
+                    <label for="design-name">Design Name</label>
+                </div>
+                <!-- <div class="input-field col s3">
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">save</i>Save Design</a>
+                </div> -->
+            </div>
         </div>
         <div id="design.case" class="page" hidden>
             case
