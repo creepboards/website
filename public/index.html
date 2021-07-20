@@ -167,8 +167,7 @@
     <div id="design" class="page" hidden>
         <ul class="router-container center pagination">
             <li id="design-router.open" class="route waves-effect"><a>Open</a></li>
-            <li id="design-router.layout" class="route waves-effect"><a>Layout</a></li>
-            <li id="design-router.case" class="route waves-effect"><a>Case</a></li>
+            <li id="design-router.edit" class="route waves-effect"><a>Edit</a></li>
             <li id="design-router.assembly" class="route waves-effect"><a>Assembly</a></li>
             <li id="design-router.accessories" class="route waves-effect"><a>Accessories</a></li>
             <li id="design-router.checkout" class="route waves-effect"><a>Checkout</a></li>
@@ -184,26 +183,122 @@
                 </div>
             </div>
         </div>
-        <div id="design.layout" class="page container">    
+        <div id="design.edit" class="page container">    
             <div id="layout-preview" class="layout-preview"></div>
             <div class="divider"></div>
             <ul class="router-container center pagination">
-                <li id="layout-router.meta" class="route waves-effect"><a>Meta</a></li>
-                <li id="layout-router.switches" class="route waves-effect"><a>Switches</a></li>
-                <li id="layout-router.leds" class="route waves-effect"><a>Leds</a></li>
+                <li id="edit-router.settings" class="route waves-effect"><a>Settings</a></li>
+                <li id="edit-router.switches" class="route waves-effect"><a>Switches</a></li>
+                <li id="edit-router.case" class="route waves-effect"><a>Case</a></li>
+                <li id="edit-router.leds" class="route waves-effect"><a>Leds</a></li>
+                <li id="edit-router.encoders" class="route waves-effect"><a>Rotary Encoders</a></li>
             </ul>
-            <div class ="row">
-                <div class="input-field col s3">
+            <div id="design.edit.settings" class ="page row">
+                <div class="input-field col s6">
                     <input placeholder="" id="design-name" type="text" class="">
                     <label for="design-name">Design Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="" id="design-author" type="text" class="">
+                    <label for="design-author">Created By</label>
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="design-description" class="materialize-textarea"></textarea>
+                    <label for="design-description">Description</label>
+                </div>
+                <div class="input-field col s12">
+                    <select>
+                      <optgroup label="Linear">
+                        <option value="1">Cherry Red</option>
+                        <option value="2">Cherry Black</option>
+                      </optgroup>
+                      <optgroup label="Tactile">
+                        <option value="3">Cherry Brown</option>
+                        <option value="4">Cherry Blue</option>
+                      </optgroup>
+                    </select>
+                    <label>Switch Type</label>
+                </div>
+                <div class="row s3">
+                    <div class="col">Hot Swap Sockets</div>
+                    <div class="switch col">
+                        <label>
+                        No
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                        Yes
+                        </label>
+                    </div>
                 </div>
                 <!-- <div class="input-field col s3">
                     <a class="waves-effect waves-light btn"><i class="material-icons left">save</i>Save Design</a>
                 </div> -->
             </div>
-        </div>
-        <div id="design.case" class="page" hidden>
-            case
+            <div id="design.edit.switches" class ="page">
+                <!-- 
+                    width
+                    height
+                    rotation
+                    rx
+                    ry
+                    x
+                    y
+                 -->
+                 <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <div class="col">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-top-left">Top Left Legend</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-top-center">Top Center Legend</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-top-right">Top Right Legend</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-center-left">Center Left Legend</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-center-center">Center Center Legend</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-center-right">Center Right Legend</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-bottom-left">Bottom Left Legend</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-bottom-center">Bottom Center Legend</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <textarea id="design-switch-legend-top-left" class="materialize-textarea"></textarea>
+                            <label for="switch-legend-bottom-right">Bottom Right Legend</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="design.edit.case" class ="page">
+
+            </div>
+            <div id="design.edit.leds" class ="page">
+
+            </div>
+            <div id="design.edit.encoders" class ="page">
+                
+            </div>
         </div>
         <div id="design.assembly" class="page" hidden>
             assembly

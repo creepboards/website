@@ -32,7 +32,7 @@ export function render_design_button(doc, kb){
             document.getElementById('design-name').value = design.name;
             console.log(doc.id);
             location.hash = ''+doc.id;
-            document.getElementById('design-router.layout').click();
+            document.getElementById('design-router.edit').click();
         }  
     );
     return button

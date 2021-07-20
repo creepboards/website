@@ -12,11 +12,16 @@ const buttons = { //1st entry defines click through; others define "active" page
     'button.start-your-design':'/design/open',
 
     'design-router.open':'/design/open',
-    'design-router.layout':'/design/layout',
-    'design-router.case':'/design/case',
+    'design-router.edit':'/design/edit/settings',
     'design-router.assembly':'/design/assembly',
     'design-router.accessories':'/design/accessories',
-    'design-router.checkout':'/design/checkout'
+    'design-router.checkout':'/design/checkout',
+
+    'edit-router.settings':'/design/edit/settings',
+    'edit-router.switches':'/design/edit/switches',
+    'edit-router.case':'/design/edit/case',
+    'edit-router.leds':'/design/edit/leds',
+    'edit-router.encoders':'/design/edit/encoders'
 };
 
 const paths = {
@@ -30,15 +35,30 @@ const paths = {
         'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.open'],
         't':'Design - Open A Design'
     },
-    '/design/layout':{
-        'd':['design', 'design.layout'],
-        'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.layout'],
-        't':'Design - Layout'
+    '/design/edit/settings':{
+        'd':['design', 'design.edit', 'design.edit.settings'],
+        'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.edit', 'edit-router.settings'],
+        't':'Design - Edit'
     },
-    '/design/case':{
-        'd':['design', 'design.case'],
-        'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.case'],
-        't':'Design - Case'
+    '/design/edit/case':{
+        'd':['design', 'design.edit', 'design.edit.case'],
+        'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.edit', 'edit-router.case'],
+        't':'Design - Edit'
+    },
+    '/design/edit/switches':{
+        'd':['design', 'design.edit', 'design.edit.switches'],
+        'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.edit', 'edit-router.switches'],
+        't':'Design - Edit'
+    },
+    '/design/edit/leds':{
+        'd':['design', 'design.edit', 'design.edit.leds'],
+        'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.edit', 'edit-router.leds'],
+        't':'Design - Edit'
+    },
+    '/design/edit/encoders':{
+        'd':['design', 'design.edit', 'design.edit.encoders'],
+        'a':['top-nav-router.design', 'side-nav-router.design', 'design-router.edit', 'edit-router.encoders'],
+        't':'Design - Edit'
     },
     '/design/assembly':{
         'd':['design', 'design.assembly'],
@@ -72,9 +92,19 @@ function render_state(path){
     document.querySelectorAll(".route").forEach(
         item => item.classList.remove('active')
     );
-    paths[path]['a'].forEach(
-        id => document.getElementById(id).classList.add('active')
-    );
+    if(path in paths){
+        paths[path]['a'].forEach(
+            function(id){
+                try {
+                    document.getElementById(id).classList.add('active')
+                } catch(e){
+                    console.error('failed to add active class to: '+id);
+                }
+            }
+        );
+    } else {
+        console.error(path + ' is not in defined paths');
+    }
 
     // hide/show pages
     document.querySelectorAll(".page").forEach(
@@ -95,10 +125,14 @@ function navigate_to(path) {
 }
 window.onload = event => {
     // Add history push() event when boxes are clicked
-    Object.keys(buttons).forEach(
-        id => document.getElementById(id).addEventListener('click', 
-            e => navigate_to(buttons[id])
-        )
+    Object.keys(buttons).forEach( 
+        function(id){
+            try{
+                document.getElementById(id).addEventListener('click', e => navigate_to(buttons[id]))
+            } catch(e){
+                console.error('failed to add listener to: '+id);
+            }
+        }
     );
     navigate_to(window.location.pathname);
 }
