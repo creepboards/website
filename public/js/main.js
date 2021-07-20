@@ -15,11 +15,6 @@ auth.onAuthStateChanged(user => {
     }
 });
 
-
-
-
-
-
 window.onresize = function(event) {
     kb.render_html();
 }
