@@ -1,3 +1,5 @@
+import * as router from './router.js';
+
 export const db = firebase.firestore();
 
 // export function load_design(doc){
@@ -31,7 +33,6 @@ export function render_design_button(doc, kb){
             kb.load_from_string(design.layout);
             document.getElementById('design-name').value = design.name;
             console.log(doc.id);
-            location.hash = ''+doc.id;
             document.getElementById('design-router.edit').click();
         }  
     );

@@ -1,4 +1,4 @@
-const buttons = { //1st entry defines click through; others define "active" pages and can be RE
+export const buttons = { //1st entry defines click through; others define "active" pages and can be RE
     'top-nav-router.home':'/',
     'top-nav-router.design':'/design/open',
     'top-nav-router.about':'/about',
@@ -24,7 +24,7 @@ const buttons = { //1st entry defines click through; others define "active" page
     'edit-router.encoders':'/design/edit/encoders'
 };
 
-const paths = {
+export const paths = {
     '/':{
         'd':['home'],
         'a':['top-nav-router.home', 'side-nav-router.home'],
@@ -87,7 +87,7 @@ const paths = {
     },
 };
 
-function render_state(path){
+export function render_state(path){
     // "activate" buttons
     document.querySelectorAll(".route").forEach(
         item => item.classList.remove('active')
@@ -118,11 +118,11 @@ function render_state(path){
     document.title = paths[path]['t'];
 };
 
-function navigate_to(path) {
+export function navigate_to(path) {
     render_state(path);
-    // Finally push state change to the address bar
-    window.history.pushState({path},path,path + location.hash);
+    window.history.pushState({path},path,path + hash);
 }
+
 window.onload = event => {
     // Add history push() event when boxes are clicked
     Object.keys(buttons).forEach( 
